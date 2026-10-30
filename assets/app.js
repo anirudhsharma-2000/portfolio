@@ -153,8 +153,8 @@ function render(data){
       </div>` : ''}
       <div class="work-text">
         <div class="work-head">
-          ${icon ? `<img class="app-icon" src="${esc(icon)}" alt="" width="58" height="58" referrerpolicy="no-referrer" data-mono="${esc(initials(pr.title))}">`
-                 : `<span class="app-icon mono" aria-hidden="true">${esc(initials(pr.title))}</span>`}
+          ${icon ? `<img class="app-icon" src="${esc(icon)}" alt="" width="58" height="58" referrerpolicy="no-referrer" data-mono="${esc(pr.monogram || initials(pr.title))}">`
+                 : `<span class="app-icon mono" aria-hidden="true">${esc(pr.monogram || initials(pr.title))}</span>`}
           <div><h3 id="w-${pi}">${esc(pr.title)}</h3>${where ? `<p class="work-where">${esc(where)}</p>` : ''}</div>
         </div>
         <p class="work-desc">${esc(pr.description)}</p>

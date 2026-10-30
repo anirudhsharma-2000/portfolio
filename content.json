@@ -7,7 +7,7 @@
     "eyebrow": "navgraph.xml · startDestination",
     "headline_pre": "Android apps that feel alive in ",
     "headline_highlight": "real time",
-    "bio": "I'm **Anirudh Sharma**. I build Kotlin-first, Compose-native Android apps for shoppers, stores and living-room TVs, with WebSockets, offline-first sync and CI/CD baked in.",
+    "bio": "I'm **Anirudh Sharma**. I build Kotlin and Jetpack Compose apps people use every day: consumer apps with 100K+ downloads and real-time Android TV for 10,000+ concurrent viewers, plus the backends, payments and AI features behind them.",
     "email": "anirudh16june@gmail.com",
     "resume_url": "/resume.pdf",
     "contact_blurb": "Open to senior Android and mobile roles, plus freelance builds: consumer apps, Android TV, React Native, or full-stack with a Node.js backend. Email is the fastest route; I reply within a day.",
@@ -17,7 +17,7 @@
         "label": "years in mobile"
       },
       {
-        "value": "160K+",
+        "value": "210K+",
         "label": "app downloads"
       },
       {
@@ -64,7 +64,7 @@
   "sections": {
     "projects": {
       "title": "Shipped apps",
-      "sub": "Four apps live on Google Play, plus open-source work I'm proud of."
+      "sub": "Apps live on Google Play, an in-store POS that halved checkout time, and open-source work."
     },
     "experience": {
       "title": "Experience",
@@ -82,14 +82,14 @@
     {
       "title": "Wholesale Mandi",
       "featured": true,
-      "description": "Fresh-produce ordering for customers across Bengaluru and Chennai. I own the Android architecture: MVVM with strict Hilt DI, a modular move to Jetpack Compose, and Remote Config flags for A/B-tested rollouts without app-store waits.",
+      "description": "Fresh-produce ordering for customers across Bengaluru and Chennai, built in Kotlin and Jetpack Compose with Room, WorkManager and Google Maps. Remote Config flags let us A/B test rollouts without waiting on app-store updates.",
       "tags": [
         "Kotlin",
         "Jetpack Compose",
-        "Dagger-Hilt",
-        "MVVM",
-        "Remote Config",
-        "A/B Testing"
+        "Room",
+        "WorkManager",
+        "Google Maps SDK",
+        "Remote Config"
       ],
       "play_url": "https://play.google.com/store/apps/details?id=com.madrasmandi.user",
       "github_url": "",
@@ -119,13 +119,13 @@
     },
     {
       "title": "Origin Fresh",
-      "description": "Fresh fruits and veggies, with an AI recipe generator on Google Gemini and Razorpay payments confirmed by webhook.",
+      "description": "Fresh fruits and veggies, with an AI recipe generator on Google Gemini and Razorpay payments confirmed by webhook. I cut the app from 40 MB to 17 MB.",
       "tags": [
         "Kotlin",
+        "Jetpack Compose",
         "Gemini API",
         "Razorpay",
-        "Webhooks",
-        "Compose"
+        "Webhooks"
       ],
       "play_url": "https://play.google.com/store/apps/details?id=com.originfresh.user",
       "github_url": "",
@@ -146,8 +146,34 @@
           "value": "4.4",
           "label": "rating on Play",
           "rating": true
+        },
+        {
+          "value": "58%",
+          "label": "smaller app"
         }
       ]
+    },
+    {
+      "title": "Origin Fresh POS",
+      "badge": "Built at Origin Fresh for store staff, 2026",
+      "description": "The in-store checkout app staff use for large orders. Barcode scanning drops items straight into the cart instead of searching for them, and a paginated catalog keeps it fast.",
+      "stats": [
+        {
+          "value": "<5 min",
+          "label": "large-order checkout, down from 6–10"
+        }
+      ],
+      "tags": [
+        "Kotlin",
+        "Jetpack Compose",
+        "Barcode scanning",
+        "Pagination"
+      ],
+      "play_url": "",
+      "github_url": "",
+      "icon": "",
+      "screenshots": [],
+      "monogram": "POS"
     },
     {
       "title": "TLDR by LumioLabs",
@@ -211,7 +237,7 @@
     },
     {
       "title": "Dossier",
-      "description": "Self-hosted AI job-search app. I shipped its Claude connector and Startups discovery across YC and Hacker News hiring posts.",
+      "description": "Self-hosted AI job-search app. I built its Claude connector and Startups discovery across YC and Hacker News hiring posts; both were adopted upstream and shipped in v1.9.0 with credit.",
       "tags": [
         "TypeScript",
         "Next.js",
@@ -242,14 +268,14 @@
       "company": "Origin Fresh",
       "role": "Senior Software Engineer",
       "period": "Jan 2026 — Present",
-      "summary": "Consumer and POS Android apps for a fresh-produce business — Bengaluru.",
+      "summary": "Consumer apps and the in-store POS app for a fresh-produce business, Bengaluru.",
       "points": [
-        "Ship Wholesale Mandi (100K+ downloads, rated 4.1) and Origin Fresh (10K+, rated 4.4) on Google Play across Bengaluru and Chennai",
-        "Led the modular XML → Jetpack Compose migration, speeding up feature delivery by 35%",
-        "Built an AI recipe generator on Google Gemini inside the Origin Fresh app",
-        "Own mobile architecture across consumer and POS apps with MVVM and strict Dagger-Hilt DI",
-        "Razorpay payments with webhook-driven confirmation for reliable order status",
-        "Remote Config feature flags and A/B tests, cutting app-store update cycles for critical rollouts"
+        "Ship Wholesale Mandi (100K+ downloads, rated 4.1 from ~7K reviews) and Origin Fresh (10K+, rated 4.4) on Google Play for customers across Bengaluru and Chennai",
+        "Improved app startup time by ~70% with Baseline Profiles and LeakCanary-found leak fixes, and cut the Origin Fresh app from 40 MB to 17 MB",
+        "Cut large-order checkout in the in-store POS app from 6–10 minutes to under 5 with barcode scanning and a paginated catalog",
+        "Built an AI recipe generator in the Origin Fresh app with the Google Gemini API",
+        "Razorpay payments with webhook-driven confirmation, keeping order and payment status reliable end to end",
+        "Feature flags and dynamic routing on Firebase Remote Config to A/B test rollouts without waiting on app-store updates"
       ]
     },
     {
@@ -258,32 +284,35 @@
       "period": "Sep 2024 — Dec 2025",
       "summary": "Real-time content discovery across phone and Android TV.",
       "points": [
-        "Built and shipped TLDR by LumioLabs (50K+ downloads), unifying movies, shows, music, and live sports",
-        "Real-time Android TV features in Compose over Socket.IO for 10,000+ concurrent users",
-        "GitHub Actions CI/CD that cut manual build and deploy time by 50%",
-        "Phone-to-TV launch flow over FCM, starting content on the TV from your phone",
-        "Fixed a critical multi-threading race condition with Coroutines/Flow-driven state"
+        "Built and shipped TLDR by LumioLabs (50K+ downloads), unifying movies, shows, music, and live sports with cross-platform search",
+        "Real-time Android TV features in Jetpack Compose over bidirectional Socket.IO for 10,000+ concurrent users",
+        "Phone-to-TV launch flow over FCM, so users start content on the TV straight from their phone",
+        "GitHub Actions CI/CD for staging and production, cutting manual build and deploy time by 50%",
+        "Fixed a first-launch race condition in concurrent microservice calls with a Coroutines Mutex, so service setup runs exactly once"
       ]
     },
     {
       "company": "WeDoApps",
       "role": "Android Developer",
       "period": "Aug 2023 — Aug 2024",
-      "summary": "Android plus the backend behind it — remote, end to end.",
+      "summary": "Android plus the backend behind it, remote.",
       "points": [
-        "Designed Node.js + MongoDB backend services, consumed in-app via Retrofit and Coroutines",
-        "Firebase Authentication, FCM, and Analytics for security and user retention",
-        "Set UI regression test plans with Product, Design, and QA for zero-defect production releases"
+        "Built and shipped a live cricket scores app on Google Play (50K+ downloads, rated 4.2 from 500+ reviews) with ball-by-ball commentary, scorecards, schedules and points tables",
+        "Designed Node.js + MongoDB backend services, consumed over REST with Retrofit and Coroutines, with Room for local storage and WorkManager for background work",
+        "Firebase Authentication for sign-in, FCM push notifications for re-engagement, and analytics event tracking",
+        "Defined UI regression test plans with Product, Design and QA, run before every production release"
       ]
     },
     {
       "company": "Full Creative",
       "role": "Jr. Software Engineer",
       "period": "Sep 2022 — Aug 2023",
-      "summary": "First taste of large, multi-module Android at scale.",
+      "summary": "Three Android apps built from one shared multi-module codebase.",
       "points": [
-        "Memory-leak isolation, performance tuning, and refactoring across multi-module codebases, improving cold-start times",
-        "Moved high-traffic user flows from legacy views to Jetpack Compose, simplifying state management"
+        "Worked on anywhere.app (10K+ downloads, rated 4.3) for team chat, file sharing and video calls; AnswerConnect (10K+, rated 4.3) for a 24/7 virtual answering service; and WellReceived, HIPAA-compliant patient messaging",
+        "Migrated high-traffic flows from legacy Views to Jetpack Compose in the shared modules, so all three apps got the new UI from one change",
+        "Fixed FCM notification delivery and in-app dialer bugs across the apps",
+        "Profiled and refactored the shared modules, fixing memory leaks and improving cold-start time"
       ]
     }
   ],
@@ -303,6 +332,8 @@
         "Android SDK",
         "Jetpack Compose",
         "Compose for TV",
+        "Kotlin Multiplatform",
+        "Compose Multiplatform",
         "Room",
         "Retrofit",
         "WorkManager",
@@ -329,7 +360,7 @@
         "Remote Config",
         "Razorpay",
         "Webhooks",
-        "On-device AI",
+        "LLM integration (Gemini API)",
         "MCP"
       ]
     },
@@ -353,6 +384,7 @@
         "LeakCanary",
         "Baseline Profiles",
         "Crashlytics",
+        "Firebase Performance",
         "GitHub Actions",
         "Gradle",
         "A/B Testing"
