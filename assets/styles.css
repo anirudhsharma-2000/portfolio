@@ -293,6 +293,7 @@ main{max-width:calc(var(--wrap) + var(--rail));margin:0 auto;padding:0 var(--gut
   .facts dd{font-size:26px}
   .work,.work.flip,.work.tv,.work.tv.flip{grid-template-columns:minmax(0,1fr);gap:32px}
   .work-media,.work.tv .work-media{align-items:center}
+  .work-media,.work.flip .work-media{order:2}   /* phones: title and story first, then the screens */
   .frame-phone{width:228px}
   .job,.edu-list li,.skill-rows > div{grid-template-columns:minmax(0,1fr);gap:6px}
   .job{padding:28px 0}
