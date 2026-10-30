@@ -97,8 +97,13 @@
       "play_url": "https://play.google.com/store/apps/details?id=com.madrasmandi.user",
       "github_url": "",
       "badge": "Origin Fresh · 2026",
-      "icon": "",
-      "screenshots": [],
+      "icon": "https://play-lh.googleusercontent.com/vUhfWS5vvXRoc3zhoqoKamgbxe7qs2MLRqSmtXWL6QN8T5_brl7QqPz-JpaVGBbPqUqYRjNT9WGWNYr_9MLJvw=w160-h160",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/OHSdoIe8rv5tytnRpZBVuZePeNeUbrZs0EYlsd1z8aqHhLxZowjvZRYNxUWZdLS-RgKdehW4aslKjPzrO_RQlwc=w1052-h640",
+        "https://play-lh.googleusercontent.com/w7UtdTqzSkOPxwkQ28hNZgJElUKYTHBEhAfcnk3EWi-J1SstnIBqSQWeg8nE9Q3LgXA0GK3uo08ZqpJQW57Cfw=w1052-h640",
+        "https://play-lh.googleusercontent.com/_P-N5GUa-HAl__RfzUcalzNRv3_G6Bl6hqm0LEFR6rfttX9_9e0GE8XVdC9RXeYI7vYBBzAWMDNMXz77z1HWWQ=w1052-h640",
+        "https://play-lh.googleusercontent.com/0BOVGpETOeBGRSZN4HxWNwYq7cHa1jdKCW5J2i0HlhRXRr9JaGmvCkb1DFaPZrQwKDS4olonZbpTOq559UNZrSM=w1052-h640"
+      ],
       "stats": [
         {
           "value": "100K+",
@@ -127,8 +132,13 @@
       "play_url": "https://play.google.com/store/apps/details?id=com.originfresh.user",
       "github_url": "",
       "badge": "Origin Fresh · 2026",
-      "icon": "",
-      "screenshots": [],
+      "icon": "https://play-lh.googleusercontent.com/L3Z3YiwWdeMaZM5fvqi-M8Bl_yHwZHXOvNg4eH2AZmNJhE1b2jvutuUKk78RuI9O258RQN9FkE0s_YP6Eeq4Wps=w160-h160",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/9-e2vQNs0I0xklexG7cLoJe3icE22zbV9eZ5_TBRqmW8nFIMzSGMm5SYlay3X_TeZxeKEFm610GMyv-7-zIZPQ=w1052-h640",
+        "https://play-lh.googleusercontent.com/ysxLrKI8IyNGPYP8ROc2kX-7mIc-bmaytxJKecTjfiFvSIM1FDSrXQQ-xQySNAQhim_4OFUHJHH_MN13rc2YYw=w1052-h640",
+        "https://play-lh.googleusercontent.com/-E_WoPoD6k2B5oeYxq3Q_ihLr4lX-7_YoUjK0mcdM0b3MZ-pumvUdU7TzsyNMDHWotrofeUF5RKaHw00ler8qA=w1052-h640",
+        "https://play-lh.googleusercontent.com/pLq7Wtw1JhSiPSNdpqt4AidbHaIy3NJpa8pfQgIxbLsnqw7sspiLJ0awM8wlRTXlgKvb36EFZUJ0I0HIkMWUNc8=w1052-h640"
+      ],
       "stats": [
         {
           "value": "10K+",
@@ -153,9 +163,13 @@
       "play_url": "https://play.google.com/store/apps/details?id=ai.lumiolabs.tldr",
       "github_url": "",
       "badge": "Circuit House · 2025",
-      "icon": "",
-      "screenshots": [],
-      "screenshot_orientation": "landscape",
+      "icon": "https://play-lh.googleusercontent.com/SxSi_-6exGU1NyW9P68U2qGcBfHm_XkjvbyZ-qYFCPU0uHuez7lzB8ZNx1dCIHSs4gW11gJVIJf7nZxxVYaiSQ=w160-h160",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/Uh5zVwTHiJzvpqrxD9G-gKddz8Zlh1be3ajlXkJIaT1BlrW12QPX9hHQM164X0IN1cHQqbh5Q1byi14kkaYHTw=w1052-h640",
+        "https://play-lh.googleusercontent.com/JGmY50UPjAjNG2nnp6F83EbOM4x9hOqTC1-OFsZtZCvMPeMJzQSfUgnYDZQId1OBkNTGjBqcIuNkJWCrhAyzILc=w1052-h640",
+        "https://play-lh.googleusercontent.com/t07GJ6I2eNq4J_nE8a_5VyOVSPwXT8jsRoEh0CEtAjNAj6wpASXceL726WNPKe32qG0hKeBVgkXmMY1WzrFBoxs=w1052-h640",
+        "https://play-lh.googleusercontent.com/zGKNGkcWm-Jvm4SeWSw4-qnbi-wJaX2yp57zRcGelPUgBnd5rqMMfIOQ8q7KEnKF_itlsyv0qxJyDvm9V-q0=w1052-h640"
+      ],
       "stats": [
         {
           "value": "50K+",

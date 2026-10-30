@@ -140,7 +140,7 @@ function render(data){
     <article class="${cls}">
       <div class="proj-body">
         <div class="proj-top">
-          ${icon ? `<img class="app-icon" src="${esc(icon)}" alt="" loading="lazy" width="50" height="50">`
+          ${icon ? `<img class="app-icon" src="${esc(icon)}" alt="" loading="lazy" width="50" height="50" referrerpolicy="no-referrer" data-mono="${esc(initials(pr.title))}">`
                  : `<span class="app-icon mono" aria-hidden="true">${esc(initials(pr.title))}</span>`}
           <div class="proj-title"><h3>${esc(pr.title)}</h3>${badge ? `<span class="proj-badge">${esc(badge)}</span>` : ''}</div>
         </div>
@@ -155,9 +155,35 @@ function render(data){
         </div>` : ''}
       </div>
       ${shots.length ? `<div class="shots${land ? ' landscape' : ''}" tabindex="0" aria-label="${esc(pr.title)} screenshots">${shots.map((u, i) =>
-        `<img class="shot" src="${esc(u)}" alt="${esc(pr.title)} screenshot ${i + 1}" loading="lazy">`).join('')}</div>` : ''}
+        `<img class="shot" src="${esc(u)}" alt="${esc(pr.title)} screenshot ${i + 1}" loading="lazy" referrerpolicy="no-referrer">`).join('')}</div>` : ''}
     </article>`;
   }).join('');
+
+  // images: detect landscape shots; on failure fall back to monogram / drop the shot
+  const grid = $('#proj-grid');
+  const onImg = (img, ok) => {
+    if (img.classList.contains('app-icon')) {
+      if (ok) return;
+      const m = document.createElement('span');
+      m.className = 'app-icon mono'; m.setAttribute('aria-hidden', 'true'); m.textContent = img.dataset.mono || '';
+      img.replaceWith(m); return;
+    }
+    if (!img.classList.contains('shot')) return;
+    const box = img.parentElement;
+    if (ok) {
+      img.classList.add('loaded');
+      if (img.naturalWidth > img.naturalHeight * 1.1) img.classList.add('wide');
+      if ([...box.children].every(i => i.classList.contains('wide'))) box.classList.add('landscape');
+      return;
+    }
+    img.remove();
+    if (box && !box.children.length) { box.closest('.proj')?.classList.remove('has-shots'); box.remove(); }
+  };
+  grid.querySelectorAll('img').forEach(img => {
+    if (img.complete) onImg(img, img.naturalWidth > 0);
+    else { img.addEventListener('load', () => onImg(img, true), { once: true });
+           img.addEventListener('error', () => onImg(img, false), { once: true }); }
+  });
 
   // experience: first N bullets visible, the rest behind "show more"
   const SHOW = 3;
