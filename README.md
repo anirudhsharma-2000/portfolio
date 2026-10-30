@@ -18,16 +18,16 @@ If the live source is ever unreachable, the page falls back to the `content.json
 
 | key | what it holds |
 |---|---|
-| `profile` | name, role, headline, `bio` (supports `**bold**`), email, `resume_url`, `contact_blurb`, `stats[]`, `live_feed[]` (`tag`: ws, pay, fcm, ai, flag, sync, tv; `text`) for the phone in the hero |
-| `sections` | eyebrow / title / subtitle for each section |
-| `projects[]` | `title`, `badge`, `description`, `stats[]` (`value`, `label`), `tags[]`, `play_url`, `github_url`, `url` (+ optional `url_label`), `featured` (spans full width), `icon`, `screenshots[]`, `screenshot_orientation` (`portrait` or `landscape`) |
+| `profile` | name, role, `status` (line above the headline), headline, `bio` (supports `**bold**`), email, `resume_url`, `contact_blurb`, `stats[]`, `live_feed[]` (`tag`: ws, pay, fcm, ai, flag, sync, tv; `text`) for the phone in the hero |
+| `sections` | title / subtitle for each section |
+| `projects[]` | `title`, `badge`, `description`, `stats[]` (`value`, `label`), `tags[]`, `play_url`, `github_url`, `url` (+ optional `url_label`), `icon`, `screenshots[]` (shown in a phone frame; landscape images switch to a TV frame automatically), stats with `"rating": true` get a star |
 | `core_skills[]` | highlighted "core stack" chips; matching tags in the skill groups are highlighted too |
 | `experiences[]` | `company`, `role`, `period`, `summary`, `points[]` |
 | `skills[]` | `group`, `items[]` |
 | `education[]` | `degree`, `school`, `period`, `detail` |
 | `socials[]` | `label`, `url` |
 
-Order on the page follows array order. Empty links are hidden. Experience shows the first 3 bullets per job, with a "more" button for the rest.
+Order on the page follows array order. Empty links are hidden. Experience shows the first 3 bullets per job, with a "Show more" button for the rest. Projects with screenshots alternate left/right; projects without screenshots show as text rows.
 
 ### Adding app icons and screenshots
 

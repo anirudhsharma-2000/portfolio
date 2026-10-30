@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Anirudh Sharma — Mobile Engineer</title>
 <meta name="description" content="Mobile engineer in Bengaluru building Kotlin-first, Compose-native Android apps with real-time features, offline-first sync, and CI/CD baked in." />
 <meta property="og:title" content="Anirudh Sharma — Mobile Engineer">
@@ -12,51 +12,47 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#121018">
+<meta name="theme-color" content="#15111E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/styles.css">
-
+<script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('loaded')},2500);</script>
 </head>
 <body>
 
-<div class="backdrop"></div>
-<div class="progress" id="progress"></div>
+<a class="skip" href="#work">Skip to projects</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
-<!-- shared gradients -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="kgrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8E6BFF"/><stop offset="52%" stop-color="#C86BFF"/><stop offset="100%" stop-color="#FF8A5C"/>
-    </linearGradient>
     <linearGradient id="railGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#8E6BFF"/><stop offset="55%" stop-color="#C86BFF"/><stop offset="100%" stop-color="#FF8A5C"/>
     </linearGradient>
   </defs>
 </svg>
 
-<nav class="topnav">
-  <a class="brand" href="#home"><span class="dot"></span><span><b id="brand-name">anirudh</b>.dev</span></a>
-  <div class="navlinks" id="navlinks">
-    <a href="#projects">Projects</a>
+<header class="topnav">
+  <a class="brand" href="#home" aria-label="Home"><span class="brand-mark" aria-hidden="true"></span><b id="brand-name">anirudh</b><span class="brand-tld">.dev</span></a>
+  <nav class="navlinks" id="navlinks" aria-label="Sections">
+    <a href="#work">Work</a>
     <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
+    <a href="#skills">Toolkit</a>
     <a href="#contact">Contact</a>
-  </div>
-  <button class="menu-btn" id="menuBtn" aria-label="Open menu">menu()</button>
-</nav>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+</header>
 
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
-  <button class="close" id="menuClose" aria-label="Close menu">close()</button>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu" hidden>
+  <button class="menu-close" id="menuClose">Close</button>
   <a href="#home">Home</a>
-  <a href="#projects">Projects</a>
+  <a href="#work">Work</a>
   <a href="#experience">Experience</a>
-  <a href="#skills">Skills</a>
+  <a href="#skills">Toolkit</a>
   <a href="#contact">Contact</a>
 </div>
 
-<!-- signature: navigation-graph rail -->
+<!-- navigation-graph rail (desktop) -->
 <aside class="rail" aria-hidden="true">
   <svg id="railSvg" width="80" height="620" viewBox="0 0 80 620">
     <path class="track" id="railTrack" d=""/>
@@ -64,31 +60,29 @@
     <g id="railNodes"></g>
   </svg>
 </aside>
-<div class="rail-label" id="railLabel"></div>
+<div class="rail-label" id="railLabel" aria-hidden="true"></div>
 
 <main>
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="home">
-  <div>
-    <p class="eyebrow" id="hero-eyebrow">navgraph.xml · startDestination</p>
-    <h1 id="hero-headline">Android apps that feel alive in <span class="squig">real time<svg viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path class="draw d3" pathLength="1" d="M3 16 C 30 6, 55 22, 85 13 S 150 5, 197 14"/></svg></span>.</h1>
-    <p class="hero-bio" id="hero-bio">I'm <strong>Anirudh Sharma</strong>, a mobile engineer in Bengaluru with 4+ years across consumer, POS, and Android TV apps, now Senior Software Engineer at Origin Fresh. Kotlin-first, Compose-native — happiest wiring up WebSockets, offline-first sync, and CI/CD pipelines that ship themselves.</p>
+  <div class="hero-copy">
+    <p class="status" id="hero-status"><span class="status-dot" aria-hidden="true"></span><span id="hero-eyebrow">Senior Software Engineer at Origin Fresh, Bengaluru</span></p>
+    <h1 class="hero-title" id="hero-headline">Android apps that feel alive in real time.</h1>
+    <p class="hero-bio" id="hero-bio">I'm <strong>Anirudh Sharma</strong>. I build Kotlin-first, Compose-native Android apps for consumers, shops and TVs, with WebSockets, offline-first sync and CI/CD baked in.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#projects">See my work
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="btn btn-ghost" href="/resume.pdf" id="resume-btn" target="_blank" rel="noopener">resume.pdf ↗</a>
+      <a class="btn btn-solid" href="#work">View projects</a>
+      <a class="btn btn-line" href="/resume.pdf" id="resume-btn" target="_blank" rel="noopener">Resume (PDF)</a>
     </div>
-    <div class="stats" id="stats"></div>
+    <dl class="facts" id="stats"></dl>
   </div>
 
-  <!-- hero art: a phone streaming live events (content.json → profile.live_feed) -->
+  <!-- the live phone: streams profile.live_feed from content.json -->
   <div class="hero-art" aria-hidden="true">
     <div class="device float">
       <div class="device-frame">
         <div class="device-status"><span id="feed-clock">9:41</span><span class="device-island"></span><span class="device-sig"><i></i><i></i><i></i></span></div>
-        <div class="device-bar"><span class="live-dot"></span><b>live</b><span class="device-sub">event stream</span><span class="device-count" id="feed-count">0 events</span></div>
+        <div class="device-bar"><span class="live-dot"></span><b>Live</b><span class="device-sub">event stream</span><span class="device-count" id="feed-count">0 events</span></div>
         <ul class="feed" id="feed"></ul>
         <div class="device-home"></div>
       </div>
@@ -99,47 +93,53 @@
   </div>
 </section>
 
-<!-- ================= PROJECTS ================= -->
-<section id="projects">
-  <p class="eyebrow reveal">ProjectsScreen()</p>
-  <h2 class="reveal">Shipped &amp; in the wild</h2>
-  <p class="section-sub reveal">Production apps on Google Play — from fresh-produce marketplaces to TV discovery to open source.</p>
-  <div class="proj-grid" id="proj-grid"></div>
+<!-- ================= WORK ================= -->
+<section class="section" id="work">
+  <div class="section-head">
+    <h2 id="work-title">Shipped apps</h2>
+    <p class="section-sub" id="work-sub"></p>
+  </div>
+  <div class="work-list" id="work-list"></div>
 </section>
 
 <!-- ================= EXPERIENCE ================= -->
-<section id="experience">
-  <p class="eyebrow reveal">ExperienceScreen()</p>
-  <h2 class="reveal">Where I've built</h2>
-  <p class="section-sub reveal">Four-plus years across product startups, agency work, and freelance builds.</p>
-  <div class="xp" id="xp-list"></div>
-  <div class="edu" id="edu-list"></div>
+<section class="section" id="experience">
+  <div class="section-head">
+    <h2>Experience</h2>
+    <p class="section-sub"></p>
+  </div>
+  <ol class="jobs" id="xp-list"></ol>
+  <div class="edu">
+    <h3 class="edu-title">Education</h3>
+    <ul class="edu-list" id="edu-list"></ul>
+  </div>
 </section>
 
 <!-- ================= SKILLS ================= -->
-<section id="skills">
-  <p class="eyebrow reveal">SkillsScreen()</p>
-  <h2 class="reveal">The toolkit</h2>
-  <p class="section-sub reveal">Deep on the modern Android stack, with full-stack range when a backend is needed.</p>
-  <div class="core reveal" id="core-skills"></div>
-  <div class="skill-grid" id="skill-grid"></div>
+<section class="section" id="skills">
+  <div class="section-head">
+    <h2>Toolkit</h2>
+    <p class="section-sub"></p>
+  </div>
+  <div class="core" id="core-skills"></div>
+  <dl class="skill-rows" id="skill-grid"></dl>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="contact">
-  <p class="eyebrow reveal" style="justify-content:center">ContactScreen()</p>
-  <h2 class="reveal">Let's ship something.</h2>
-  <p class="section-sub reveal" id="contact-sub">Open to senior Android and mobile roles, plus freelance builds — consumer apps, Android TV, React Native, or full-stack with a Node.js backend. Email is the fastest route; I reply within a day.</p>
-  <a class="btn btn-primary reveal" id="email-btn" href="mailto:anirudh16june@gmail.com">anirudh16june@gmail.com</a>
-  <div class="socials reveal" id="socials"></div>
+<section class="section contact" id="contact">
+  <h2>Let's build something.</h2>
+  <p class="contact-sub" id="contact-sub">Open to senior Android and mobile roles, plus freelance builds. Email is the fastest route; I reply within a day.</p>
+  <a class="contact-email" id="email-btn" href="mailto:anirudh16june@gmail.com">anirudh16june@gmail.com</a>
+  <p class="socials" id="socials"></p>
 </section>
 
 </main>
 
-<footer>
+<footer class="footer">
   <span id="footer-left">© 2026 Anirudh Sharma</span>
-  <span>built with Kotlin energy · content via <span id="cms-tag">bundled data</span></span>
+  <span>Content loaded from <span id="cms-tag">bundled data</span></span>
 </footer>
+
 <script src="/config.js"></script>
 <script src="/assets/app.js" defer></script>
 </body>

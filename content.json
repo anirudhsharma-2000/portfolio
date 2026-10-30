@@ -7,10 +7,10 @@
     "eyebrow": "navgraph.xml · startDestination",
     "headline_pre": "Android apps that feel alive in ",
     "headline_highlight": "real time",
-    "bio": "I'm **Anirudh Sharma**, a mobile engineer in Bengaluru with 4+ years across consumer, POS, and Android TV apps, now Senior Software Engineer at Origin Fresh. Kotlin-first, Compose-native — happiest wiring up WebSockets, offline-first sync, and CI/CD pipelines that ship themselves.",
+    "bio": "I'm **Anirudh Sharma**. I build Kotlin-first, Compose-native Android apps for shoppers, stores and living-room TVs, with WebSockets, offline-first sync and CI/CD baked in.",
     "email": "anirudh16june@gmail.com",
     "resume_url": "/resume.pdf",
-    "contact_blurb": "Open to senior Android and mobile roles, plus freelance builds — consumer apps, Android TV, React Native, or full-stack with a Node.js backend. Email is the fastest route; I reply within a day.",
+    "contact_blurb": "Open to senior Android and mobile roles, plus freelance builds: consumer apps, Android TV, React Native, or full-stack with a Node.js backend. Email is the fastest route; I reply within a day.",
     "stats": [
       {
         "value": "4+",
@@ -58,27 +58,24 @@
         "tag": "ws",
         "text": "order.status → out_for_delivery"
       }
-    ]
+    ],
+    "status": "Senior Software Engineer at Origin Fresh, Bengaluru"
   },
   "sections": {
     "projects": {
-      "eyebrow": "ProjectsScreen()",
-      "title": "Shipped & in the wild",
-      "sub": "Production apps on Google Play — from fresh-produce marketplaces to TV discovery to open source."
+      "title": "Shipped apps",
+      "sub": "Four apps live on Google Play, plus open-source work I'm proud of."
     },
     "experience": {
-      "eyebrow": "ExperienceScreen()",
-      "title": "Where I've built",
-      "sub": "Four-plus years across product startups, agency work, and freelance builds."
+      "title": "Experience",
+      "sub": "Four-plus years across product startups, agency work and freelance builds."
     },
     "skills": {
-      "eyebrow": "SkillsScreen()",
-      "title": "The toolkit",
-      "sub": "Deep on the modern Android stack, with full-stack range when a backend is needed."
+      "title": "Toolkit",
+      "sub": "Deep on the modern Android stack, with full-stack range when a project needs a backend."
     },
     "contact": {
-      "eyebrow": "ContactScreen()",
-      "title": "Let's ship something."
+      "title": "Let's build something."
     }
   },
   "projects": [
@@ -96,7 +93,7 @@
       ],
       "play_url": "https://play.google.com/store/apps/details?id=com.madrasmandi.user",
       "github_url": "",
-      "badge": "Origin Fresh · 2026",
+      "badge": "Built at Origin Fresh, 2026",
       "icon": "https://play-lh.googleusercontent.com/vUhfWS5vvXRoc3zhoqoKamgbxe7qs2MLRqSmtXWL6QN8T5_brl7QqPz-JpaVGBbPqUqYRjNT9WGWNYr_9MLJvw=w160-h160",
       "screenshots": [
         "https://play-lh.googleusercontent.com/OHSdoIe8rv5tytnRpZBVuZePeNeUbrZs0EYlsd1z8aqHhLxZowjvZRYNxUWZdLS-RgKdehW4aslKjPzrO_RQlwc=w1052-h640",
@@ -111,7 +108,7 @@
         },
         {
           "value": "4.1",
-          "label": "from ~7K reviews",
+          "label": "rating, ~7K reviews",
           "rating": true
         },
         {
@@ -132,7 +129,7 @@
       ],
       "play_url": "https://play.google.com/store/apps/details?id=com.originfresh.user",
       "github_url": "",
-      "badge": "Origin Fresh · 2026",
+      "badge": "Built at Origin Fresh, 2026",
       "icon": "https://play-lh.googleusercontent.com/L3Z3YiwWdeMaZM5fvqi-M8Bl_yHwZHXOvNg4eH2AZmNJhE1b2jvutuUKk78RuI9O258RQN9FkE0s_YP6Eeq4Wps=w160-h160",
       "screenshots": [
         "https://play-lh.googleusercontent.com/9-e2vQNs0I0xklexG7cLoJe3icE22zbV9eZ5_TBRqmW8nFIMzSGMm5SYlay3X_TeZxeKEFm610GMyv-7-zIZPQ=w1052-h640",
@@ -147,7 +144,7 @@
         },
         {
           "value": "4.4",
-          "label": "Play rating",
+          "label": "rating on Play",
           "rating": true
         }
       ]
@@ -164,7 +161,7 @@
       ],
       "play_url": "https://play.google.com/store/apps/details?id=ai.lumiolabs.tldr",
       "github_url": "",
-      "badge": "Circuit House · 2025",
+      "badge": "Built at Circuit House, 2025",
       "icon": "https://play-lh.googleusercontent.com/SxSi_-6exGU1NyW9P68U2qGcBfHm_XkjvbyZ-qYFCPU0uHuez7lzB8ZNx1dCIHSs4gW11gJVIJf7nZxxVYaiSQ=w160-h160",
       "screenshots": [
         "https://play-lh.googleusercontent.com/Uh5zVwTHiJzvpqrxD9G-gKddz8Zlh1be3ajlXkJIaT1BlrW12QPX9hHQM164X0IN1cHQqbh5Q1byi14kkaYHTw=w1052-h640",
@@ -196,7 +193,7 @@
       ],
       "play_url": "https://play.google.com/store/apps/details?id=com.driver.EHO",
       "github_url": "",
-      "badge": "Freelance",
+      "badge": "Freelance build, 2022",
       "icon": "https://play-lh.googleusercontent.com/42-emN2iGNvMRDKr_IMLlDK8_VHdCz3TJw2xZDY6Ouc0ybGVelAgOUtbE2A5kZsWtvjQB0YOBwoHCAye61rv9g=w160-h160",
       "screenshots": [
         "https://play-lh.googleusercontent.com/EFrm1-hmyd7WBWcqPGyJGDIsLnhBlrbDf3ieGulLsiAaJB0lm-4akcbiYK0vTLIOygfBgLJeLjSI4MkWSInlFg=w1052-h640",
@@ -207,7 +204,7 @@
       "stats": [
         {
           "value": "4.8",
-          "label": "from 31 reviews",
+          "label": "rating, 31 reviews",
           "rating": true
         }
       ]
@@ -223,7 +220,7 @@
       ],
       "play_url": "",
       "github_url": "https://github.com/anirudhsharma-2000/dossier",
-      "badge": "Open source",
+      "badge": "Open-source contribution, 2026",
       "icon": "",
       "screenshots": [],
       "stats": [

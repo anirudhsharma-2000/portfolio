@@ -84,160 +84,191 @@ const asList = (v) => {
 const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/(^|\W)_(.+?)_(?=\W|$)/g, '$1<em>$2</em>');
 const safeUrl = (u) => /^(https?:|mailto:|\/|#)/i.test(String(u || '').trim()) ? String(u).trim() : '';
 const setText = (sel, v) => { const el = $(sel); if (el && v != null && v !== '') el.textContent = v; };
-
-const squiggle = `<svg viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path class="draw d3" pathLength="1" d="M3 16 C 30 6, 55 22, 85 13 S 150 5, 197 14"/></svg>`;
-const arrow = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>`;
+const ext = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>`;
+const STAR = `<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.82 5.98 6.52.8-4.8 4.48 1.24 6.46L12 17.1l-5.78 3.22 1.24-6.46-4.8-4.48 6.52-.8z"/></svg>`;
+const initials = (t) => String(t || '?').split(/[\s-]+/)
+  .filter(w => /^[A-Za-z0-9]/.test(w) && !/^(by|of|the|and|for|a)$/i.test(w))
+  .slice(0, 2).map(w => w[0]).join('').toUpperCase();
+const statVal = (s) => {
+  let v = String(s.value ?? ''), rating = !!s.rating;
+  if (/★\s*$/.test(v)) { v = v.replace(/\s*★\s*$/, ''); rating = true; }
+  return { v, rating };
+};
 
 /* ---------- render ---------- */
+let FEED = [];
 function render(data){
   const p = data.profile || {};
 
   if (p.name) document.title = `${p.name} — ${p.role || ''}`.replace(/ — $/, '');
   setText('#brand-name', p.brand || (p.name || '').split(' ')[0].toLowerCase());
-  setText('#hero-eyebrow', p.eyebrow);
-  if (p.headline_pre != null || p.headline_highlight) {
-    $('#hero-headline').innerHTML = `${esc(p.headline_pre)}<span class="squig">${esc(p.headline_highlight)}${squiggle}</span>.`;
-  }
-  // bio: plain text with **bold**; legacy bio_html is still accepted
+  setText('#hero-eyebrow', p.status || p.eyebrow);
+  const headline = p.headline || `${p.headline_pre || ''}${p.headline_highlight || ''}`.trim();
+  if (headline) setText('#hero-headline', /[.!?]$/.test(headline) ? headline : headline + '.');
   if (p.bio) $('#hero-bio').innerHTML = inline(p.bio);
   else if (p.bio_html) $('#hero-bio').innerHTML = p.bio_html;
 
-  // resume opens in a new tab (viewable, not force-downloaded)
   const rb = $('#resume-btn');
   const resume = safeUrl(p.resume_url);
-  if (resume && resume !== '#') { rb.href = resume; rb.hidden = false; }
-  else rb.hidden = true;
+  if (resume && resume !== '#') { rb.href = resume; rb.hidden = false; } else rb.hidden = true;
+
+  const stats = asList(p.stats);
+  $('#stats').innerHTML = stats.map(s => `<div><dt>${esc(s.label)}</dt><dd>${esc(s.value)}</dd></div>`).join('');
+
+  // section headings (eyebrows are no longer shown; the rail carries section names)
+  const S = data.sections || {};
+  const sec = (id, key) => {
+    const s = S[key]; if (!s) return;
+    setText(`#${id} .section-head h2, #${id} > h2`, s.title);
+    const sub = document.querySelector(`#${id} .section-sub`);
+    if (sub && s.sub != null) sub.textContent = s.sub;
+  };
+  sec('work', 'projects'); sec('experience', 'experience'); sec('skills', 'skills'); sec('contact', 'contact');
 
   setText('#contact-sub', p.contact_blurb);
   if (p.email) { const eb = $('#email-btn'); eb.href = `mailto:${p.email}`; eb.textContent = p.email; }
   setText('#footer-left', `© ${new Date().getFullYear()} ${p.name || ''}`.trim());
 
-  const stats = asList(p.stats);
-  if (stats.length) $('#stats').innerHTML = stats.map(s =>
-    `<div class="stat"><div class="num">${esc(s.value)}</div><div class="lab">${esc(s.label)}</div></div>`).join('');
-
-  // section headings
-  const S = data.sections || {};
-  for (const id of ['projects', 'experience', 'skills', 'contact']) {
-    const s = S[id]; if (!s) continue;
-    setText(`#${id} .eyebrow`, s.eyebrow);
-    setText(`#${id} h2`, s.title);
-    if (id !== 'contact') setText(`#${id} .section-sub`, s.sub);
-  }
-
-  const STAR = `<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.82 5.98 6.52.8-4.8 4.48 1.24 6.46L12 17.1l-5.78 3.22 1.24-6.46-4.8-4.48 6.52-.8z"/></svg>`;
-  const statHTML = (s) => {
-    let v = String(s.value ?? ''), rating = !!s.rating;
-    if (/★\s*$/.test(v)) { v = v.replace(/\s*★\s*$/, ''); rating = true; }
-    return `<div class="proj-stat${rating ? ' rating' : ''}"><div class="num">${esc(v)}${rating ? STAR : ''}</div><div class="lab">${esc(s.label)}</div></div>`;
-  };
-  const initials = (t) => String(t || '?').split(/[\s-]+/).filter(w => /^[A-Za-z0-9]/.test(w) && !/^(by|of|the|and|for|a)$/i.test(w))
-    .slice(0, 2).map(w => w[0]).join('').toUpperCase();
-
-  $('#proj-grid').innerHTML = asList(data.projects).map(pr => {
+  /* ----- work: showcase rows ----- */
+  let mediaIdx = 0;
+  $('#work-list').innerHTML = asList(data.projects).map((pr, pi) => {
     const play = safeUrl(pr.play_url), gh = safeUrl(pr.github_url), web = safeUrl(pr.url);
     const icon = safeUrl(pr.icon);
-    const shots = asList(pr.screenshots).map(safeUrl).filter(Boolean);
+    const shots = asList(pr.screenshots).map(safeUrl).filter(Boolean).slice(0, 6);
+    const tv = pr.screenshot_orientation === 'landscape';
+    const flip = shots.length ? (mediaIdx++ % 2 === 1) : false;
+    const cls = ['work', shots.length ? 'has-media' : 'no-media', flip && 'flip', tv && 'tv'].filter(Boolean).join(' ');
+    const where = pr.badge || pr.metric || '';
     const pstats = asList(pr.stats);
-    const badge = pr.badge || pr.metric;
-    const land = pr.screenshot_orientation === 'landscape';
-    const cls = ['proj', 'reveal', pr.featured && 'featured', shots.length && 'has-shots'].filter(Boolean).join(' ');
     return `
-    <article class="${cls}">
-      <div class="proj-body">
-        <div class="proj-top">
-          ${icon ? `<img class="app-icon" src="${esc(icon)}" alt="" loading="lazy" width="50" height="50" referrerpolicy="no-referrer" data-mono="${esc(initials(pr.title))}">`
-                 : `<span class="app-icon mono" aria-hidden="true">${esc(initials(pr.title))}</span>`}
-          <div class="proj-title"><h3>${esc(pr.title)}</h3>${badge ? `<span class="proj-badge">${esc(badge)}</span>` : ''}</div>
+    <article class="${cls}" aria-labelledby="w-${pi}">
+      ${shots.length ? `
+      <div class="work-media">
+        <div class="frame ${tv ? 'frame-tv' : 'frame-phone'}">
+          <div class="frame-screen">${shots.map((u, i) =>
+            `<img src="${esc(u)}" alt="${esc(pr.title)} screen ${i + 1} of ${shots.length}" ${i ? 'loading="lazy"' : ''} referrerpolicy="no-referrer"${i === 0 ? ' class="on"' : ''}>`).join('')}</div>
         </div>
-        <p>${esc(pr.description)}</p>
-        ${pstats.length ? `<div class="proj-stats">${pstats.map(s =>
-          statHTML(s)).join('')}</div>` : ''}
-        <div class="tags">${asList(pr.tags).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-        ${play || gh || web ? `<div class="proj-links">
-          ${play ? `<a href="${esc(play)}" target="_blank" rel="noopener">Play Store ${arrow}</a>` : ''}
-          ${gh   ? `<a href="${esc(gh)}" target="_blank" rel="noopener">GitHub ${arrow}</a>` : ''}
-          ${web  ? `<a href="${esc(web)}" target="_blank" rel="noopener">${esc(pr.url_label || 'Website')} ${arrow}</a>` : ''}
-        </div>` : ''}
+        ${shots.length > 1 ? `<div class="shot-dots" role="group" aria-label="${esc(pr.title)} screenshots">${shots.map((_, i) =>
+          `<button class="dot-btn${i === 0 ? ' on' : ''}" type="button" data-i="${i}" aria-label="Show screen ${i + 1} of ${shots.length}"${i === 0 ? ' aria-current="true"' : ''}></button>`).join('')}</div>` : ''}
+      </div>` : ''}
+      <div class="work-text">
+        <div class="work-head">
+          ${icon ? `<img class="app-icon" src="${esc(icon)}" alt="" width="58" height="58" referrerpolicy="no-referrer" data-mono="${esc(initials(pr.title))}">`
+                 : `<span class="app-icon mono" aria-hidden="true">${esc(initials(pr.title))}</span>`}
+          <div><h3 id="w-${pi}">${esc(pr.title)}</h3>${where ? `<p class="work-where">${esc(where)}</p>` : ''}</div>
+        </div>
+        <p class="work-desc">${esc(pr.description)}</p>
+        ${pstats.length ? `<dl class="work-stats">${pstats.map(s => { const { v, rating } = statVal(s);
+          return `<div><dt>${esc(s.label)}</dt><dd>${esc(v)}${rating ? STAR + '<span class="sr-only"> stars</span>' : ''}</dd></div>`; }).join('')}</dl>` : ''}
+        ${asList(pr.tags).length ? `<ul class="work-tags" aria-label="Built with">${asList(pr.tags).map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
+        ${play || gh || web ? `<p class="work-links">
+          ${play ? `<a href="${esc(play)}" target="_blank" rel="noopener">Google Play ${ext}</a>` : ''}
+          ${gh   ? `<a href="${esc(gh)}" target="_blank" rel="noopener">GitHub ${ext}</a>` : ''}
+          ${web  ? `<a href="${esc(web)}" target="_blank" rel="noopener">${esc(pr.url_label || 'Website')} ${ext}</a>` : ''}
+        </p>` : ''}
       </div>
-      ${shots.length ? `<div class="shots${land ? ' landscape' : ''}" tabindex="0" aria-label="${esc(pr.title)} screenshots">${shots.map((u, i) =>
-        `<img class="shot" src="${esc(u)}" alt="${esc(pr.title)} screenshot ${i + 1}" loading="lazy" referrerpolicy="no-referrer">`).join('')}</div>` : ''}
     </article>`;
   }).join('');
+  wireWork();
 
-  // images: detect landscape shots; on failure fall back to monogram / drop the shot
-  const grid = $('#proj-grid');
-  const onImg = (img, ok) => {
-    if (img.classList.contains('app-icon')) {
-      if (ok) return;
-      const m = document.createElement('span');
-      m.className = 'app-icon mono'; m.setAttribute('aria-hidden', 'true'); m.textContent = img.dataset.mono || '';
-      img.replaceWith(m); return;
-    }
-    if (!img.classList.contains('shot')) return;
-    const box = img.parentElement;
-    if (ok) {
-      img.classList.add('loaded');
-      if (img.naturalWidth > img.naturalHeight * 1.1) img.classList.add('wide');
-      if ([...box.children].every(i => i.classList.contains('wide'))) box.classList.add('landscape');
-      return;
-    }
-    img.remove();
-    if (box && !box.children.length) { box.closest('.proj')?.classList.remove('has-shots'); box.remove(); }
-  };
-  grid.querySelectorAll('img').forEach(img => {
-    if (img.complete) onImg(img, img.naturalWidth > 0);
-    else { img.addEventListener('load', () => onImg(img, true), { once: true });
-           img.addEventListener('error', () => onImg(img, false), { once: true }); }
-  });
-
-  // experience: first N bullets visible, the rest behind "show more"
+  /* ----- experience ----- */
   const SHOW = 3;
   $('#xp-list').innerHTML = asList(data.experiences).map((x, xi) => {
     const pts = asList(x.points), extra = Math.max(0, pts.length - SHOW);
     return `
-    <div class="xp-item reveal">
-      <div class="xp-when">${esc(x.period)}</div>
-      <h3>${esc(x.role)} <span class="at">${esc(x.company)}</span></h3>
-      ${x.summary ? `<p>${esc(x.summary)}</p>` : ''}
-      <ul class="xp-points" id="xp-pts-${xi}">${pts.map((pt, i) => `<li${i >= SHOW ? ' class="extra"' : ''}>${esc(pt)}</li>`).join('')}</ul>
-      ${extra ? `<button class="xp-more" type="button" aria-expanded="false" aria-controls="xp-pts-${xi}" data-more="+ ${extra} more">+ ${extra} more</button>` : ''}
-    </div>`;
+    <li class="job">
+      <div class="job-meta"><p class="job-when">${esc(x.period)}</p><p class="job-co">${esc(x.company)}</p></div>
+      <div class="job-body">
+        <h3>${esc(x.role)}</h3>
+        ${x.summary ? `<p class="job-sum">${esc(x.summary)}</p>` : ''}
+        <ul class="job-points" id="job-pts-${xi}">${pts.map((pt, i) => `<li${i >= SHOW ? ' class="extra"' : ''}>${esc(pt)}</li>`).join('')}</ul>
+        ${extra ? `<button class="more-btn" type="button" aria-expanded="false" aria-controls="job-pts-${xi}" data-more="Show ${extra} more">Show ${extra} more</button>` : ''}
+      </div>
+    </li>`;
   }).join('');
   $('#xp-list').onclick = (e) => {
-    const b = e.target.closest('.xp-more'); if (!b) return;
-    const item = b.closest('.xp-item'), open = item.classList.toggle('open');
+    const b = e.target.closest('.more-btn'); if (!b) return;
+    const open = b.closest('.job').classList.toggle('open');
     b.setAttribute('aria-expanded', open);
-    b.textContent = open ? 'show less' : b.dataset.more;
+    b.textContent = open ? 'Show less' : b.dataset.more;
   };
 
   $('#edu-list').innerHTML = asList(data.education).map(e => `
-    <div class="edu-item reveal">
-      <div class="xp-when">${esc(e.period)}</div>
-      <h4>${esc(e.degree)}</h4>
-      <span>${esc(e.school)}${e.detail ? ' · ' + esc(e.detail) : ''}</span>
-    </div>`).join('');
+    <li><span class="edu-when">${esc(e.period)}</span>
+      <span><span class="edu-deg">${esc(e.degree)}</span><br><span class="edu-school">${esc(e.school)}${e.detail ? `, ${esc(e.detail)}` : ''}</span></span></li>`).join('');
 
+  /* ----- toolkit ----- */
   const core = asList(data.core_skills);
   const hot = new Set(core.map(c => String(c).toLowerCase()));
-  const coreEl = $('#core-skills');
-  if (coreEl) coreEl.innerHTML = core.length
-    ? `<span class="core-lab">core_stack =</span>${core.map(c => `<span class="core-chip">${esc(c)}</span>`).join('')}` : '';
+  $('#core-skills').innerHTML = core.length
+    ? `<span class="core-lab">Most used</span>${core.map(c => `<span class="core-chip">${esc(c)}</span>`).join('')}` : '';
   $('#skill-grid').innerHTML = asList(data.skills).map(g => `
-    <div class="skill-card reveal">
-      <h3>${esc(g.group)}</h3>
-      <div class="tags">${asList(g.items).map(i =>
-        `<span class="tag${hot.has(String(i).toLowerCase()) ? ' hot' : ''}">${esc(i)}</span>`).join('')}</div>
-    </div>`).join('');
+    <div><dt>${esc(g.group.charAt(0).toUpperCase() + g.group.slice(1))}</dt>
+      <dd>${asList(g.items).map(i => hot.has(String(i).toLowerCase()) ? `<span class="hot">${esc(i)}</span>` : esc(i)).join(', ')}</dd></div>`).join('');
+
+  /* ----- socials ----- */
+  const socials = asList(data.socials).filter(s => safeUrl(s.url));
+  $('#socials').innerHTML = socials.map(s => {
+    const label = String(s.label || '');
+    const nice = { github: 'GitHub', linkedin: 'LinkedIn' }[label.toLowerCase()] || label;
+    return `<a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(nice)}</a>`;
+  }).join('') + (resume && resume !== '#' ? `<a href="${esc(resume)}" target="_blank" rel="noopener">Resume (PDF)</a>` : '');
 
   FEED = asList(p.live_feed).filter(e => e && e.text);
+}
 
-  $('#socials').innerHTML = asList(data.socials).filter(s => safeUrl(s.url)).map(s =>
-    `<a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join('');
+/* ---------- work rows: screenshot switcher, image fallbacks ---------- */
+function wireWork(){
+  const list = $('#work-list');
+  list.onclick = (e) => {
+    const b = e.target.closest('.dot-btn'); if (!b) return;
+    const media = b.closest('.work-media'), i = +b.dataset.i;
+    const imgs = media.querySelectorAll('.frame-screen img');
+    imgs.forEach((img, k) => img.classList.toggle('on', k === i));
+    media.querySelectorAll('.dot-btn').forEach((d, k) => { d.classList.toggle('on', k === i); d.toggleAttribute('aria-current', k === i); });
+    imgs[i]?.removeAttribute('loading');
+  };
+
+  const dropShot = (img) => {
+    const media = img.closest('.work-media'); if (!media) return;
+    const imgs = [...media.querySelectorAll('.frame-screen img')];
+    const k = imgs.indexOf(img);
+    const dots = media.querySelectorAll('.dot-btn');
+    const wasOn = img.classList.contains('on');
+    img.remove(); dots[k]?.remove();
+    const left = [...media.querySelectorAll('.frame-screen img')];
+    if (!left.length) {
+      const row = media.closest('.work');
+      media.remove(); row.classList.remove('has-media', 'flip', 'tv'); row.classList.add('no-media');
+      return;
+    }
+    media.querySelectorAll('.dot-btn').forEach((d, j) => d.dataset.i = j);
+    if (left.length < 2) media.querySelector('.shot-dots')?.remove();
+    if (wasOn) { left[0].classList.add('on'); left[0].removeAttribute('loading'); media.querySelector('.dot-btn')?.classList.add('on'); }
+  };
+  const iconFail = (img) => {
+    const m = document.createElement('span');
+    m.className = 'app-icon mono'; m.setAttribute('aria-hidden', 'true'); m.textContent = img.dataset.mono || '';
+    img.replaceWith(m);
+  };
+  // landscape screenshots (e.g. a TV app) switch the row to a TV frame
+  const checkShape = (img) => {
+    if (!img.naturalWidth || img.naturalWidth <= img.naturalHeight * 1.1) return;
+    const row = img.closest('.work'), frame = row?.querySelector('.frame');
+    if (!frame || frame.classList.contains('frame-tv')) return;
+    frame.classList.replace('frame-phone', 'frame-tv'); row.classList.add('tv');
+  };
+
+  list.querySelectorAll('img').forEach(img => {
+    const isIcon = img.classList.contains('app-icon');
+    const ok = () => { if (!isIcon) checkShape(img); };
+    const bad = () => isIcon ? iconFail(img) : dropShot(img);
+    if (img.complete) (img.naturalWidth ? ok : bad)();
+    else { img.addEventListener('load', ok, { once: true }); img.addEventListener('error', bad, { once: true }); }
+  });
 }
 
 /* ---------- hero: live event feed ---------- */
-let FEED = [];
 const DEFAULT_FEED = [
   { tag: 'ws',   text: 'socket.connected · gateway' },
   { tag: 'pay',  text: 'payment.captured' },
@@ -248,7 +279,7 @@ function initFeed(){
   const list = $('#feed'); if (!list) return;
   const events = FEED.length ? FEED : DEFAULT_FEED;
   const count = $('#feed-count'), clock = $('#feed-clock');
-  const MAX = 6;
+  const MAX = 8;
   let i = 0, total = 0;
   const pad = (n) => String(n).padStart(2, '0');
   const tickClock = () => { const d = new Date(); clock.textContent = `${d.getHours()}:${pad(d.getMinutes())}`; };
@@ -273,7 +304,6 @@ function initFeed(){
     count.textContent = `${total} events`;
   };
 
-  // seed with a few past events so the screen starts full
   const seed = Math.min(4, events.length);
   for (let k = 0; k < seed; k++) push(false);
   list.querySelectorAll('.ev-time').forEach((t, k) => t.dataset.t = Date.now() - (k + 1) * 3000);
@@ -285,12 +315,12 @@ function initFeed(){
   setInterval(() => { if (visible && !document.hidden) { push(true); ages(); } else ages(); }, 2200);
 }
 
-/* ---------- signature: nav-graph rail ---------- */
+/* ---------- nav-graph rail ---------- */
 const SECTIONS = [
   { id: 'home',       label: 'HomeScreen()' },
-  { id: 'projects',   label: 'ProjectsScreen()' },
+  { id: 'work',       label: 'WorkScreen()' },
   { id: 'experience', label: 'ExperienceScreen()' },
-  { id: 'skills',     label: 'SkillsScreen()' },
+  { id: 'skills',     label: 'ToolkitScreen()' },
   { id: 'contact',    label: 'ContactScreen()' }
 ];
 
@@ -299,7 +329,6 @@ function initRail(){
   const H = 620, top = 40, bottom = H - 40;
   const step = (bottom - top) / (SECTIONS.length - 1);
   const pts = SECTIONS.map((s, i) => ({ ...s, x: i % 2 === 0 ? 26 : 54, y: top + step * i }));
-
   let d = `M ${pts[0].x} ${pts[0].y}`;
   for (let i = 1; i < pts.length; i++){
     const a = pts[i-1], b = pts[i], my = (a.y + b.y) / 2;
@@ -308,23 +337,17 @@ function initRail(){
   $('#railTrack').setAttribute('d', d);
   const ink = $('#railInk'); ink.setAttribute('d', d);
   const L = ink.getTotalLength();
-  ink.style.strokeDasharray = L;
-  ink.style.strokeDashoffset = L;
+  ink.style.strokeDasharray = L; ink.style.strokeDashoffset = L;
 
-  const nodesG = $('#railNodes');
-  const label = $('#railLabel');
+  const nodesG = $('#railNodes'), label = $('#railLabel');
   pts.forEach((pt, i) => {
     const g = document.createElementNS('http://www.w3.org/2000/svg','g');
     g.setAttribute('class','rail-node'); g.dataset.index = i;
-    g.innerHTML = `<circle class="pulse" cx="${pt.x}" cy="${pt.y}" r="7"/>
-                   <circle class="core" cx="${pt.x}" cy="${pt.y}" r="6.5"/>
-                   <circle cx="${pt.x}" cy="${pt.y}" r="16" fill="transparent"/>`;
+    g.innerHTML = `<circle class="node-core" cx="${pt.x}" cy="${pt.y}" r="6.5"/><circle cx="${pt.x}" cy="${pt.y}" r="16" fill="transparent"/>`;
     g.addEventListener('click', () => document.getElementById(pt.id)?.scrollIntoView({ behavior:'smooth' }));
     g.addEventListener('mouseenter', () => {
       const r = g.getBoundingClientRect();
-      label.textContent = pt.label;
-      label.style.top = (r.top + r.height/2) + 'px';
-      label.classList.add('show');
+      label.textContent = pt.label; label.style.top = (r.top + r.height/2) + 'px'; label.classList.add('show');
     });
     g.addEventListener('mouseleave', () => label.classList.remove('show'));
     nodesG.appendChild(g);
@@ -338,15 +361,13 @@ function initRail(){
     const prog = max > 0 ? Math.min(1, scrollY / max) : 1;
     ink.style.strokeDashoffset = reduce ? 0 : L * (1 - prog);
     $('#progress').style.width = (prog * 100) + '%';
-    nodesG.querySelectorAll('.rail-node').forEach((g, i) =>
-      g.classList.toggle('passed', prog >= i / (SECTIONS.length - 1) - 0.02));
+    nodesG.querySelectorAll('.rail-node').forEach((g, i) => g.classList.toggle('passed', prog >= i / (SECTIONS.length - 1) - 0.02));
   }
   addEventListener('scroll', () => { if (!ticking){ ticking = true; requestAnimationFrame(update); } }, { passive:true });
   addEventListener('resize', update);
   update();
 }
 
-/* ---------- active section + nav highlight ---------- */
 function initActive(){
   const links = [...document.querySelectorAll('#navlinks a')];
   const obs = new IntersectionObserver((entries) => {
@@ -360,20 +381,14 @@ function initActive(){
   SECTIONS.forEach(s => { const el = document.getElementById(s.id); if (el) obs.observe(el); });
 }
 
-/* ---------- reveal on scroll ---------- */
-function initReveal(){
-  const obs = new IntersectionObserver((es) => es.forEach(e => {
-    if (e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
-  }), { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-}
-
-/* ---------- mobile menu ---------- */
 function initMenu(){
-  const m = $('#mobileMenu');
-  $('#menuBtn').addEventListener('click', () => m.classList.add('open'));
-  $('#menuClose').addEventListener('click', () => m.classList.remove('open'));
-  m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => m.classList.remove('open')));
+  const m = $('#mobileMenu'), btn = $('#menuBtn');
+  const set = (open) => { m.hidden = !open; btn.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : '';
+    if (open) $('#menuClose').focus(); else btn.focus(); };
+  btn.addEventListener('click', () => set(true));
+  $('#menuClose').addEventListener('click', () => set(false));
+  m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { m.hidden = true; btn.setAttribute('aria-expanded', false); document.body.style.overflow = ''; }));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !m.hidden) set(false); });
 }
 
 /* ---------- boot ---------- */
@@ -384,10 +399,9 @@ function initMenu(){
     try { render(data); } catch (e) { console.error('Render failed; showing static page.', e); }
   }
   $('#cms-tag').textContent = source;
-  document.documentElement.classList.add('content-ready');
+  requestAnimationFrame(() => document.documentElement.classList.add('loaded'));
   initFeed();
   initRail();
   initActive();
-  initReveal();
 })();
 })();
