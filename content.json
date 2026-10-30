@@ -204,7 +204,9 @@
           "value": "2",
           "label": "headline features"
         }
-      ]
+      ],
+      "url": "https://dossier-lemon-pi.vercel.app/",
+      "url_label": "Live app"
     },
     {
       "title": "EHO-Partner",
@@ -217,12 +219,22 @@
         "WorkManager",
         "Razorpay"
       ],
-      "play_url": "",
+      "play_url": "https://play.google.com/store/apps/details?id=com.driver.EHO",
       "github_url": "",
       "badge": "Freelance",
-      "icon": "",
-      "screenshots": [],
-      "stats": []
+      "icon": "https://play-lh.googleusercontent.com/42-emN2iGNvMRDKr_IMLlDK8_VHdCz3TJw2xZDY6Ouc0ybGVelAgOUtbE2A5kZsWtvjQB0YOBwoHCAye61rv9g=w160-h160",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/EFrm1-hmyd7WBWcqPGyJGDIsLnhBlrbDf3ieGulLsiAaJB0lm-4akcbiYK0vTLIOygfBgLJeLjSI4MkWSInlFg=w1052-h640",
+        "https://play-lh.googleusercontent.com/PkJ7bWCD7WCjARh7zHN_dc2GNG3Fx4pPye39ScwNETHgP2qmFXCBQgKb1pu6adf4PWGlCZmG1Zb9BsH-nHh-fw=w1052-h640",
+        "https://play-lh.googleusercontent.com/M2jszp95LuwNShxl0KXw1CMts1WNRwTkbJiDK-Tv-va-e2xIhGR05nzqtygzOxSqjhNHRNhd-Cq5PloHPjSp=w1052-h640",
+        "https://play-lh.googleusercontent.com/QILzKhn4zJ44UuwTSbfWpecxQLLn_FK2CkFdL120XnPnoEX0i949i4cX7fyihaV91u78GZ-dPM4S3I5MVULKWCY=w1052-h640"
+      ],
+      "stats": [
+        {
+          "value": "4.8★",
+          "label": "from 31 reviews"
+        }
+      ]
     }
   ],
   "experiences": [

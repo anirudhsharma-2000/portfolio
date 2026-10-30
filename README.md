@@ -20,7 +20,7 @@ If the live source is ever unreachable, the page falls back to the `content.json
 |---|---|
 | `profile` | name, role, headline, `bio` (supports `**bold**`), email, `resume_url`, `contact_blurb`, `stats[]`, `live_feed[]` (`tag`: ws, pay, fcm, ai, flag, sync, tv; `text`) for the phone in the hero |
 | `sections` | eyebrow / title / subtitle for each section |
-| `projects[]` | `title`, `badge`, `description`, `stats[]` (`value`, `label`), `tags[]`, `play_url`, `github_url`, `url`, `featured` (spans full width), `icon`, `screenshots[]`, `screenshot_orientation` (`portrait` or `landscape`) |
+| `projects[]` | `title`, `badge`, `description`, `stats[]` (`value`, `label`), `tags[]`, `play_url`, `github_url`, `url` (+ optional `url_label`), `featured` (spans full width), `icon`, `screenshots[]`, `screenshot_orientation` (`portrait` or `landscape`) |
 | `core_skills[]` | highlighted "core stack" chips; matching tags in the skill groups are highlighted too |
 | `experiences[]` | `company`, `role`, `period`, `summary`, `points[]` |
 | `skills[]` | `group`, `items[]` |

@@ -151,7 +151,7 @@ function render(data){
         ${play || gh || web ? `<div class="proj-links">
           ${play ? `<a href="${esc(play)}" target="_blank" rel="noopener">Play Store ${arrow}</a>` : ''}
           ${gh   ? `<a href="${esc(gh)}" target="_blank" rel="noopener">GitHub ${arrow}</a>` : ''}
-          ${web  ? `<a href="${esc(web)}" target="_blank" rel="noopener">Website ${arrow}</a>` : ''}
+          ${web  ? `<a href="${esc(web)}" target="_blank" rel="noopener">${esc(pr.url_label || 'Website')} ${arrow}</a>` : ''}
         </div>` : ''}
       </div>
       ${shots.length ? `<div class="shots${land ? ' landscape' : ''}" tabindex="0" aria-label="${esc(pr.title)} screenshots">${shots.map((u, i) =>
