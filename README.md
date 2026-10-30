@@ -30,7 +30,7 @@ Order on the page follows array order. Empty links are hidden.
 
 ## Resume
 
-`resume.pdf` is served from the site and the button downloads it. To replace it, upload a new `resume.pdf` to the repo; that commit redeploys automatically (a few seconds). Alternatively, point `profile.resume_url` at any public link (e.g. a Google Drive direct-download link) and it updates without a redeploy.
+`resume.pdf` is served from the site and the button opens it in a new tab. To replace it, upload a new `resume.pdf` to the repo; that commit redeploys automatically (a few seconds). Alternatively, point `profile.resume_url` at any public link (e.g. a Google Drive view link) and it updates without a redeploy.
 
 ## Using your own backend later
 
@@ -65,6 +65,6 @@ assets/styles.css  styles
 assets/app.js      content loading, rendering, nav rail, animations
 config.js          content source
 content.json       all page content
-resume.pdf         downloadable resume
+resume.pdf         resume, opens in the browser
 vercel.json        caching headers, skip builds for content-only commits
 ```

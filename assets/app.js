@@ -102,18 +102,11 @@ function render(data){
   if (p.bio) $('#hero-bio').innerHTML = inline(p.bio);
   else if (p.bio_html) $('#hero-bio').innerHTML = p.bio_html;
 
+  // resume opens in a new tab (viewable, not force-downloaded)
   const rb = $('#resume-btn');
   const resume = safeUrl(p.resume_url);
-  if (resume && resume !== '#') {
-    rb.href = resume;
-    rb.hidden = false;
-    // same-origin files download directly; external links (e.g. Drive) open in a new tab
-    const external = /^https?:/i.test(resume) && !resume.startsWith(location.origin);
-    if (external) { rb.removeAttribute('download'); rb.target = '_blank'; rb.rel = 'noopener'; }
-    else { rb.setAttribute('download', p.resume_filename || 'resume.pdf'); rb.removeAttribute('target'); }
-  } else {
-    rb.hidden = true;
-  }
+  if (resume && resume !== '#') { rb.href = resume; rb.hidden = false; }
+  else rb.hidden = true;
 
   setText('#contact-sub', p.contact_blurb);
   if (p.email) { const eb = $('#email-btn'); eb.href = `mailto:${p.email}`; eb.textContent = p.email; }
