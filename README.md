@@ -18,15 +18,27 @@ If the live source is ever unreachable, the page falls back to the `content.json
 
 | key | what it holds |
 |---|---|
-| `profile` | name, role, headline, `bio` (supports `**bold**`), email, `resume_url`, `contact_blurb`, `stats[]` |
+| `profile` | name, role, headline, `bio` (supports `**bold**`), email, `resume_url`, `contact_blurb`, `stats[]`, `live_feed[]` (`tag`: ws, pay, fcm, ai, flag, sync, tv; `text`) for the phone in the hero |
 | `sections` | eyebrow / title / subtitle for each section |
-| `projects[]` | `title`, `metric`, `description`, `tags[]`, `play_url`, `github_url`, `url`, `featured` (spans full width) |
+| `projects[]` | `title`, `badge`, `description`, `stats[]` (`value`, `label`), `tags[]`, `play_url`, `github_url`, `url`, `featured` (spans full width), `icon`, `screenshots[]`, `screenshot_orientation` (`portrait` or `landscape`) |
+| `core_skills[]` | highlighted "core stack" chips; matching tags in the skill groups are highlighted too |
 | `experiences[]` | `company`, `role`, `period`, `summary`, `points[]` |
 | `skills[]` | `group`, `items[]` |
 | `education[]` | `degree`, `school`, `period`, `detail` |
 | `socials[]` | `label`, `url` |
 
-Order on the page follows array order. Empty links are hidden.
+Order on the page follows array order. Empty links are hidden. Experience shows the first 3 bullets per job, with a "more" button for the rest.
+
+### Adding app icons and screenshots
+
+Upload images to a `media/` folder in the repo (e.g. `media/wholesale-mandi/icon.png`, `media/wholesale-mandi/1.png`), then reference them in `content.json`:
+
+```json
+"icon": "/media/wholesale-mandi/icon.png",
+"screenshots": ["/media/wholesale-mandi/1.png", "/media/wholesale-mandi/2.png"]
+```
+
+Projects without an `icon` show a gradient monogram. Uploading images triggers a quick redeploy; editing which ones appear in `content.json` doesn't. Keep screenshots under ~300 KB each (WebP or compressed PNG).
 
 ## Resume
 

@@ -83,47 +83,19 @@
     <div class="stats" id="stats"></div>
   </div>
 
-  <!-- hero art: phone + nav graph, all drawn paths -->
+  <!-- hero art: a phone streaming live events (content.json → profile.live_feed) -->
   <div class="hero-art" aria-hidden="true">
-    <svg viewBox="0 0 360 480" fill="none" class="float">
-      <!-- phone outline -->
-      <rect class="draw" pathLength="1" x="84" y="30" width="192" height="400" rx="34" stroke="url(#kgrad)" stroke-width="3"/>
-      <line class="draw d2" pathLength="1" x1="150" y1="52" x2="210" y2="52" stroke="rgba(183,167,244,.5)" stroke-width="4" stroke-linecap="round"/>
-      <!-- screens inside -->
-      <rect class="draw d2" pathLength="1" x="112" y="84" width="64" height="92" rx="12" stroke="#9D7BFF" stroke-width="2"/>
-      <rect class="draw d3" pathLength="1" x="196" y="150" width="56" height="80" rx="12" stroke="#C86BFF" stroke-width="2"/>
-      <rect class="draw d4" pathLength="1" x="120" y="268" width="60" height="86" rx="12" stroke="#FF8A5C" stroke-width="2"/>
-      <!-- nav edges between screens -->
-      <path class="draw d3" pathLength="1" d="M176 132 C 200 132, 196 168, 196 184" stroke="rgba(201,182,255,.65)" stroke-width="2" stroke-dasharray="0" stroke-linecap="round"/>
-      <path class="draw d4" pathLength="1" d="M222 230 C 222 262, 198 286, 182 296" stroke="rgba(201,182,255,.65)" stroke-width="2" stroke-linecap="round"/>
-      <path class="draw d5" pathLength="1" d="M150 268 C 150 232, 140 200, 144 178" stroke="rgba(255,138,92,.5)" stroke-width="2" stroke-linecap="round"/>
-      <!-- arrowheads -->
-      <path class="fade-in f2" d="M192 178 l4 8 8-3" stroke="rgba(201,182,255,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path class="fade-in f3" d="M188 290 l-7 6 5 7" stroke="rgba(201,182,255,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- screen content hints -->
-      <g class="fade-in f2" stroke="rgba(183,167,244,.4)" stroke-width="3" stroke-linecap="round">
-        <line x1="122" y1="104" x2="160" y2="104"/><line x1="122" y1="118" x2="166" y2="118"/><line x1="122" y1="132" x2="150" y2="132"/>
-      </g>
-      <g class="fade-in f3" stroke="rgba(200,107,255,.4)" stroke-width="3" stroke-linecap="round">
-        <line x1="206" y1="168" x2="242" y2="168"/><line x1="206" y1="182" x2="236" y2="182"/>
-      </g>
-      <g class="fade-in f4" stroke="rgba(255,138,92,.45)" stroke-width="3" stroke-linecap="round">
-        <line x1="130" y1="290" x2="170" y2="290"/><line x1="130" y1="304" x2="162" y2="304"/><line x1="130" y1="318" x2="154" y2="318"/>
-      </g>
-      <!-- floating code chips -->
-      <g class="fade-in f3">
-        <rect x="14" y="120" width="120" height="34" rx="10" fill="#1A1622" stroke="rgba(183,167,244,.25)"/>
-        <text x="28" y="142" font-family="JetBrains Mono" font-size="12" fill="#C9B6FF">@Composable</text>
-      </g>
-      <g class="fade-in f4">
-        <rect x="232" y="328" width="116" height="34" rx="10" fill="#1A1622" stroke="rgba(255,138,92,.3)"/>
-        <text x="246" y="350" font-family="JetBrains Mono" font-size="12" fill="#FF9D6B">navigate(...)</text>
-      </g>
-      <g class="fade-in f2">
-        <rect x="244" y="64" width="100" height="34" rx="10" fill="#1A1622" stroke="rgba(157,123,255,.3)"/>
-        <text x="258" y="86" font-family="JetBrains Mono" font-size="12" fill="#9D7BFF">fun main()</text>
-      </g>
-    </svg>
+    <div class="device float">
+      <div class="device-frame">
+        <div class="device-status"><span id="feed-clock">9:41</span><span class="device-island"></span><span class="device-sig"><i></i><i></i><i></i></span></div>
+        <div class="device-bar"><span class="live-dot"></span><b>live</b><span class="device-sub">event stream</span><span class="device-count" id="feed-count">0 events</span></div>
+        <ul class="feed" id="feed"></ul>
+        <div class="device-home"></div>
+      </div>
+      <span class="chip chip-a">@Composable</span>
+      <span class="chip chip-b">socket.on("event")</span>
+      <span class="chip chip-c">collectAsState()</span>
+    </div>
   </div>
 </section>
 
@@ -149,6 +121,7 @@
   <p class="eyebrow reveal">SkillsScreen()</p>
   <h2 class="reveal">The toolkit</h2>
   <p class="section-sub reveal">Deep on the modern Android stack, with full-stack range when a backend is needed.</p>
+  <div class="core reveal" id="core-skills"></div>
   <div class="skill-grid" id="skill-grid"></div>
 </section>
 

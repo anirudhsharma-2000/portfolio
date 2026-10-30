@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "profile": {
     "name": "Anirudh Sharma",
     "brand": "anirudh",
@@ -12,86 +12,237 @@
     "resume_url": "/resume.pdf",
     "contact_blurb": "Open to senior Android and mobile roles, plus freelance builds — consumer apps, Android TV, React Native, or full-stack with a Node.js backend. Email is the fastest route; I reply within a day.",
     "stats": [
-      { "value": "4+",    "label": "years in mobile" },
-      { "value": "160K+", "label": "app downloads" },
-      { "value": "10K+",  "label": "live TV users" }
+      {
+        "value": "4+",
+        "label": "years in mobile"
+      },
+      {
+        "value": "160K+",
+        "label": "app downloads"
+      },
+      {
+        "value": "10K+",
+        "label": "live TV users"
+      }
+    ],
+    "live_feed": [
+      {
+        "tag": "ws",
+        "text": "order.placed · 6 kg tomatoes, Chennai"
+      },
+      {
+        "tag": "pay",
+        "text": "razorpay.webhook → payment.captured"
+      },
+      {
+        "tag": "fcm",
+        "text": "launch_on_tv → Living Room TV"
+      },
+      {
+        "tag": "ai",
+        "text": "gemini → recipe ready: tomato rasam"
+      },
+      {
+        "tag": "flag",
+        "text": "remote_config · recipe_ai = true"
+      },
+      {
+        "tag": "sync",
+        "text": "workmanager · 3 offline events synced"
+      },
+      {
+        "tag": "tv",
+        "text": "socket.io · 10,214 viewers live"
+      },
+      {
+        "tag": "ws",
+        "text": "order.status → out_for_delivery"
+      }
     ]
   },
   "sections": {
-    "projects":   { "eyebrow": "ProjectsScreen()",   "title": "Shipped & in the wild", "sub": "Production apps on Google Play — from fresh-produce marketplaces to TV discovery to open source." },
-    "experience": { "eyebrow": "ExperienceScreen()", "title": "Where I've built",      "sub": "Four-plus years across product startups, agency work, and freelance builds." },
-    "skills":     { "eyebrow": "SkillsScreen()",     "title": "The toolkit",           "sub": "Deep on the modern Android stack, with full-stack range when a backend is needed." },
-    "contact":    { "eyebrow": "ContactScreen()",    "title": "Let's ship something." }
+    "projects": {
+      "eyebrow": "ProjectsScreen()",
+      "title": "Shipped & in the wild",
+      "sub": "Production apps on Google Play — from fresh-produce marketplaces to TV discovery to open source."
+    },
+    "experience": {
+      "eyebrow": "ExperienceScreen()",
+      "title": "Where I've built",
+      "sub": "Four-plus years across product startups, agency work, and freelance builds."
+    },
+    "skills": {
+      "eyebrow": "SkillsScreen()",
+      "title": "The toolkit",
+      "sub": "Deep on the modern Android stack, with full-stack range when a backend is needed."
+    },
+    "contact": {
+      "eyebrow": "ContactScreen()",
+      "title": "Let's ship something."
+    }
   },
   "projects": [
     {
       "title": "Wholesale Mandi",
-      "metric": "100K+ downloads · 4.1★",
       "featured": true,
-      "description": "Fresh-produce ordering app serving customers across Bengaluru and Chennai, rated 4.1 from nearly 7K reviews. I develop and ship it alongside the Origin Fresh app: MVVM with strict Dagger-Hilt DI, a modular XML → Jetpack Compose migration, and Firebase Remote Config flags for A/B-tested rollouts without waiting on app-store updates.",
-      "tags": ["Kotlin", "Jetpack Compose", "Dagger-Hilt", "MVVM", "Remote Config", "A/B Testing"],
+      "description": "Fresh-produce ordering for customers across Bengaluru and Chennai. I own the Android architecture: MVVM with strict Hilt DI, a modular move to Jetpack Compose, and Remote Config flags for A/B-tested rollouts without app-store waits.",
+      "tags": [
+        "Kotlin",
+        "Jetpack Compose",
+        "Dagger-Hilt",
+        "MVVM",
+        "Remote Config",
+        "A/B Testing"
+      ],
       "play_url": "https://play.google.com/store/apps/details?id=com.madrasmandi.user",
-      "github_url": ""
+      "github_url": "",
+      "badge": "Origin Fresh · 2026",
+      "icon": "",
+      "screenshots": [],
+      "stats": [
+        {
+          "value": "100K+",
+          "label": "downloads"
+        },
+        {
+          "value": "4.1★",
+          "label": "from ~7K reviews"
+        },
+        {
+          "value": "2",
+          "label": "cities served"
+        }
+      ]
     },
     {
       "title": "Origin Fresh",
-      "metric": "10K+ · 4.4★",
-      "description": "Consumer app for fresh fruits and veggies, with an in-app AI recipe generator on Google Gemini: enter what's in your kitchen, get a recipe. Payments run on Razorpay with webhook-driven confirmation for reliable order status.",
-      "tags": ["Kotlin", "Gemini API", "Razorpay", "Webhooks", "Compose"],
+      "description": "Fresh fruits and veggies, with an AI recipe generator on Google Gemini and Razorpay payments confirmed by webhook.",
+      "tags": [
+        "Kotlin",
+        "Gemini API",
+        "Razorpay",
+        "Webhooks",
+        "Compose"
+      ],
       "play_url": "https://play.google.com/store/apps/details?id=com.originfresh.user",
-      "github_url": ""
+      "github_url": "",
+      "badge": "Origin Fresh · 2026",
+      "icon": "",
+      "screenshots": [],
+      "stats": [
+        {
+          "value": "10K+",
+          "label": "downloads"
+        },
+        {
+          "value": "4.4★",
+          "label": "Play rating"
+        }
+      ]
     },
     {
       "title": "TLDR by LumioLabs",
-      "metric": "50K+ downloads",
-      "description": "Content discovery across movies, shows, music, and live sports from multiple platforms. I built real-time Android TV features in Compose over Socket.IO for 10K+ concurrent users, and a phone-to-TV launch flow over FCM.",
-      "tags": ["Compose for TV", "Socket.IO", "FCM", "Coroutines/Flow", "GitHub Actions"],
+      "description": "Movies, shows, music and live sports from every platform in one place. I built the real-time Android TV experience and the phone-to-TV launch flow.",
+      "tags": [
+        "Compose for TV",
+        "Socket.IO",
+        "FCM",
+        "Coroutines/Flow",
+        "GitHub Actions"
+      ],
       "play_url": "https://play.google.com/store/apps/details?id=ai.lumiolabs.tldr",
-      "github_url": ""
+      "github_url": "",
+      "badge": "Circuit House · 2025",
+      "icon": "",
+      "screenshots": [],
+      "screenshot_orientation": "landscape",
+      "stats": [
+        {
+          "value": "50K+",
+          "label": "downloads"
+        },
+        {
+          "value": "10K+",
+          "label": "concurrent users"
+        }
+      ]
     },
     {
       "title": "Dossier",
-      "metric": "Open source · v1.9.0",
-      "description": "Two headline features for a self-hosted AI job-search app: a Claude connector that searches jobs, scores postings against your profile, and saves tailored drafts while keeping contact details private; and Startups discovery that ranks YC and Hacker News hiring posts while honoring robots.txt.",
-      "tags": ["TypeScript", "Next.js", "PostgreSQL", "MCP"],
+      "description": "Self-hosted AI job-search app. I shipped its Claude connector and Startups discovery across YC and Hacker News hiring posts.",
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "PostgreSQL",
+        "MCP"
+      ],
       "play_url": "",
-      "github_url": "https://github.com/anirudhsharma-2000/dossier"
+      "github_url": "https://github.com/anirudhsharma-2000/dossier",
+      "badge": "Open source",
+      "icon": "",
+      "screenshots": [],
+      "stats": [
+        {
+          "value": "v1.9.0",
+          "label": "shipped in"
+        },
+        {
+          "value": "2",
+          "label": "headline features"
+        }
+      ]
     },
     {
       "title": "EHO-Partner",
-      "metric": "Freelance build",
-      "description": "Emergency-services dispatch app with live location on Google Maps, real-time broadcasts over WebSockets, and Razorpay payments. Offline-first sync on Room and WorkManager keeps data safe through cellular dropouts.",
-      "tags": ["Kotlin", "WebSockets", "Google Maps SDK", "Room", "WorkManager", "Razorpay"],
+      "description": "Emergency dispatch with live Maps tracking, WebSocket broadcasts, Razorpay, and offline-first sync that survives network dropouts.",
+      "tags": [
+        "Kotlin",
+        "WebSockets",
+        "Google Maps SDK",
+        "Room",
+        "WorkManager",
+        "Razorpay"
+      ],
       "play_url": "",
-      "github_url": ""
+      "github_url": "",
+      "badge": "Freelance",
+      "icon": "",
+      "screenshots": [],
+      "stats": []
     }
   ],
   "experiences": [
     {
-      "company": "Origin Fresh", "role": "Senior Software Engineer", "period": "Jan 2026 — Present",
+      "company": "Origin Fresh",
+      "role": "Senior Software Engineer",
+      "period": "Jan 2026 — Present",
       "summary": "Consumer and POS Android apps for a fresh-produce business — Bengaluru.",
       "points": [
-        "Ship Wholesale Mandi (100K+ downloads, 4.1★) and Origin Fresh (10K+, 4.4★) on Google Play for customers across Bengaluru and Chennai",
-        "Own mobile architecture across consumer and POS apps with MVVM and strict Dagger-Hilt dependency injection",
-        "Led the modular XML → Jetpack Compose migration, speeding up feature delivery by 35% on a consistent design system",
-        "Built an AI recipe generator with Google Gemini APIs inside the Origin Fresh app",
-        "Integrated Razorpay with webhook-driven payment confirmation for reliable order and payment status",
-        "Runtime feature flags and A/B tests on Firebase Remote Config, cutting app-store update cycles for critical rollouts"
+        "Ship Wholesale Mandi (100K+ downloads, 4.1★) and Origin Fresh (10K+, 4.4★) on Google Play across Bengaluru and Chennai",
+        "Led the modular XML → Jetpack Compose migration, speeding up feature delivery by 35%",
+        "Built an AI recipe generator on Google Gemini inside the Origin Fresh app",
+        "Own mobile architecture across consumer and POS apps with MVVM and strict Dagger-Hilt DI",
+        "Razorpay payments with webhook-driven confirmation for reliable order status",
+        "Remote Config feature flags and A/B tests, cutting app-store update cycles for critical rollouts"
       ]
     },
     {
-      "company": "Circuit House Technologies", "role": "Software Engineer", "period": "Sep 2024 — Dec 2025",
+      "company": "Circuit House Technologies",
+      "role": "Software Engineer",
+      "period": "Sep 2024 — Dec 2025",
       "summary": "Real-time content discovery across phone and Android TV.",
       "points": [
-        "Built and shipped TLDR by LumioLabs (50K+ downloads), unifying movies, shows, music, and live sports with cross-platform search",
-        "Real-time Android TV features in Compose over bidirectional Socket.IO for 10,000+ concurrent users",
-        "Phone-to-TV launch flow over FCM, so users start content on the TV straight from their phone",
-        "GitHub Actions CI/CD that cut manual build and deploy time to staging and production by 50%",
-        "Eliminated a critical multi-threading race condition with Coroutines/Flow-driven state management"
+        "Built and shipped TLDR by LumioLabs (50K+ downloads), unifying movies, shows, music, and live sports",
+        "Real-time Android TV features in Compose over Socket.IO for 10,000+ concurrent users",
+        "GitHub Actions CI/CD that cut manual build and deploy time by 50%",
+        "Phone-to-TV launch flow over FCM, starting content on the TV from your phone",
+        "Fixed a critical multi-threading race condition with Coroutines/Flow-driven state"
       ]
     },
     {
-      "company": "WeDoApps", "role": "Android Developer", "period": "Aug 2023 — Aug 2024",
+      "company": "WeDoApps",
+      "role": "Android Developer",
+      "period": "Aug 2023 — Aug 2024",
       "summary": "Android plus the backend behind it — remote, end to end.",
       "points": [
         "Designed Node.js + MongoDB backend services, consumed in-app via Retrofit and Coroutines",
@@ -100,7 +251,9 @@
       ]
     },
     {
-      "company": "Full Creative", "role": "Jr. Software Engineer", "period": "Sep 2022 — Aug 2023",
+      "company": "Full Creative",
+      "role": "Jr. Software Engineer",
+      "period": "Sep 2022 — Aug 2023",
       "summary": "First taste of large, multi-module Android at scale.",
       "points": [
         "Memory-leak isolation, performance tuning, and refactoring across multi-module codebases, improving cold-start times",
@@ -109,19 +262,109 @@
     }
   ],
   "skills": [
-    { "group": "languages",              "items": ["Kotlin", "Java", "TypeScript", "JavaScript"] },
-    { "group": "android core",           "items": ["Android SDK", "Jetpack Compose", "Compose for TV", "Room", "Retrofit", "WorkManager", "Google Maps SDK"] },
-    { "group": "architecture",           "items": ["MVVM", "Clean Architecture", "Multi-module", "Dagger-Hilt", "Coroutines/Flow", "LiveData"] },
-    { "group": "realtime & integrations","items": ["WebSockets", "Socket.IO", "FCM", "Remote Config", "Razorpay", "Webhooks", "On-device AI", "MCP"] },
-    { "group": "web & backend",          "items": ["React", "React Native", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL"] },
-    { "group": "quality & delivery",     "items": ["JUnit", "Android Profiler", "LeakCanary", "Baseline Profiles", "Crashlytics", "GitHub Actions", "Gradle", "A/B Testing"] }
+    {
+      "group": "languages",
+      "items": [
+        "Kotlin",
+        "Java",
+        "TypeScript",
+        "JavaScript"
+      ]
+    },
+    {
+      "group": "android core",
+      "items": [
+        "Android SDK",
+        "Jetpack Compose",
+        "Compose for TV",
+        "Room",
+        "Retrofit",
+        "WorkManager",
+        "Google Maps SDK"
+      ]
+    },
+    {
+      "group": "architecture",
+      "items": [
+        "MVVM",
+        "Clean Architecture",
+        "Multi-module",
+        "Dagger-Hilt",
+        "Coroutines/Flow",
+        "LiveData"
+      ]
+    },
+    {
+      "group": "realtime & integrations",
+      "items": [
+        "WebSockets",
+        "Socket.IO",
+        "FCM",
+        "Remote Config",
+        "Razorpay",
+        "Webhooks",
+        "On-device AI",
+        "MCP"
+      ]
+    },
+    {
+      "group": "web & backend",
+      "items": [
+        "React",
+        "React Native",
+        "Next.js",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "group": "quality & delivery",
+      "items": [
+        "JUnit",
+        "Android Profiler",
+        "LeakCanary",
+        "Baseline Profiles",
+        "Crashlytics",
+        "GitHub Actions",
+        "Gradle",
+        "A/B Testing"
+      ]
+    }
   ],
   "socials": [
-    { "label": "github",   "url": "https://github.com/anirudhsharma-2000" },
-    { "label": "linkedin", "url": "https://www.linkedin.com/in/anirudhsharma2000/" }
+    {
+      "label": "github",
+      "url": "https://github.com/anirudhsharma-2000"
+    },
+    {
+      "label": "linkedin",
+      "url": "https://www.linkedin.com/in/anirudhsharma2000/"
+    }
   ],
   "education": [
-    { "degree": "MCA — Master of Computer Applications",   "school": "PES University, Bengaluru",        "period": "2022 — 2024", "detail": "CGPA 8.14/10" },
-    { "degree": "BCA — Bachelor of Computer Applications", "school": "Lachoo Memorial College, Jodhpur", "period": "2018 — 2021", "detail": "CGPA 7.7/10" }
+    {
+      "degree": "MCA — Master of Computer Applications",
+      "school": "PES University, Bengaluru",
+      "period": "2022 — 2024",
+      "detail": "CGPA 8.14/10"
+    },
+    {
+      "degree": "BCA — Bachelor of Computer Applications",
+      "school": "Lachoo Memorial College, Jodhpur",
+      "period": "2018 — 2021",
+      "detail": "CGPA 7.7/10"
+    }
+  ],
+  "core_skills": [
+    "Kotlin",
+    "Jetpack Compose",
+    "Coroutines/Flow",
+    "Dagger-Hilt",
+    "MVVM",
+    "WebSockets",
+    "Node.js",
+    "React Native"
   ]
 }

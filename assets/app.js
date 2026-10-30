@@ -125,28 +125,59 @@ function render(data){
     if (id !== 'contact') setText(`#${id} .section-sub`, s.sub);
   }
 
+  const initials = (t) => String(t || '?').split(/[\s-]+/).filter(w => /^[A-Za-z0-9]/.test(w) && !/^(by|of|the|and|for|a)$/i.test(w))
+    .slice(0, 2).map(w => w[0]).join('').toUpperCase();
+
   $('#proj-grid').innerHTML = asList(data.projects).map(pr => {
     const play = safeUrl(pr.play_url), gh = safeUrl(pr.github_url), web = safeUrl(pr.url);
+    const icon = safeUrl(pr.icon);
+    const shots = asList(pr.screenshots).map(safeUrl).filter(Boolean);
+    const pstats = asList(pr.stats);
+    const badge = pr.badge || pr.metric;
+    const land = pr.screenshot_orientation === 'landscape';
+    const cls = ['proj', 'reveal', pr.featured && 'featured', shots.length && 'has-shots'].filter(Boolean).join(' ');
     return `
-    <article class="proj reveal${pr.featured ? ' featured' : ''}">
-      <div class="proj-head"><h3>${esc(pr.title)}</h3>${pr.metric ? `<span class="proj-metric">${esc(pr.metric)}</span>` : ''}</div>
-      <p>${esc(pr.description)}</p>
-      <div class="tags">${asList(pr.tags).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-      ${play || gh || web ? `<div class="proj-links">
-        ${play ? `<a href="${esc(play)}" target="_blank" rel="noopener">Play Store ${arrow}</a>` : ''}
-        ${gh   ? `<a href="${esc(gh)}" target="_blank" rel="noopener">GitHub ${arrow}</a>` : ''}
-        ${web  ? `<a href="${esc(web)}" target="_blank" rel="noopener">Website ${arrow}</a>` : ''}
-      </div>` : ''}
+    <article class="${cls}">
+      <div class="proj-body">
+        <div class="proj-top">
+          ${icon ? `<img class="app-icon" src="${esc(icon)}" alt="" loading="lazy" width="50" height="50">`
+                 : `<span class="app-icon mono" aria-hidden="true">${esc(initials(pr.title))}</span>`}
+          <div class="proj-title"><h3>${esc(pr.title)}</h3>${badge ? `<span class="proj-badge">${esc(badge)}</span>` : ''}</div>
+        </div>
+        <p>${esc(pr.description)}</p>
+        ${pstats.length ? `<div class="proj-stats">${pstats.map(s =>
+          `<div class="proj-stat"><div class="num">${esc(s.value)}</div><div class="lab">${esc(s.label)}</div></div>`).join('')}</div>` : ''}
+        <div class="tags">${asList(pr.tags).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+        ${play || gh || web ? `<div class="proj-links">
+          ${play ? `<a href="${esc(play)}" target="_blank" rel="noopener">Play Store ${arrow}</a>` : ''}
+          ${gh   ? `<a href="${esc(gh)}" target="_blank" rel="noopener">GitHub ${arrow}</a>` : ''}
+          ${web  ? `<a href="${esc(web)}" target="_blank" rel="noopener">Website ${arrow}</a>` : ''}
+        </div>` : ''}
+      </div>
+      ${shots.length ? `<div class="shots${land ? ' landscape' : ''}" tabindex="0" aria-label="${esc(pr.title)} screenshots">${shots.map((u, i) =>
+        `<img class="shot" src="${esc(u)}" alt="${esc(pr.title)} screenshot ${i + 1}" loading="lazy">`).join('')}</div>` : ''}
     </article>`;
   }).join('');
 
-  $('#xp-list').innerHTML = asList(data.experiences).map(x => `
+  // experience: first N bullets visible, the rest behind "show more"
+  const SHOW = 3;
+  $('#xp-list').innerHTML = asList(data.experiences).map((x, xi) => {
+    const pts = asList(x.points), extra = Math.max(0, pts.length - SHOW);
+    return `
     <div class="xp-item reveal">
       <div class="xp-when">${esc(x.period)}</div>
       <h3>${esc(x.role)} <span class="at">${esc(x.company)}</span></h3>
       ${x.summary ? `<p>${esc(x.summary)}</p>` : ''}
-      <ul class="xp-points">${asList(x.points).map(pt => `<li>${esc(pt)}</li>`).join('')}</ul>
-    </div>`).join('');
+      <ul class="xp-points" id="xp-pts-${xi}">${pts.map((pt, i) => `<li${i >= SHOW ? ' class="extra"' : ''}>${esc(pt)}</li>`).join('')}</ul>
+      ${extra ? `<button class="xp-more" type="button" aria-expanded="false" aria-controls="xp-pts-${xi}" data-more="+ ${extra} more">+ ${extra} more</button>` : ''}
+    </div>`;
+  }).join('');
+  $('#xp-list').onclick = (e) => {
+    const b = e.target.closest('.xp-more'); if (!b) return;
+    const item = b.closest('.xp-item'), open = item.classList.toggle('open');
+    b.setAttribute('aria-expanded', open);
+    b.textContent = open ? 'show less' : b.dataset.more;
+  };
 
   $('#edu-list').innerHTML = asList(data.education).map(e => `
     <div class="edu-item reveal">
@@ -155,14 +186,71 @@ function render(data){
       <span>${esc(e.school)}${e.detail ? ' · ' + esc(e.detail) : ''}</span>
     </div>`).join('');
 
+  const core = asList(data.core_skills);
+  const hot = new Set(core.map(c => String(c).toLowerCase()));
+  const coreEl = $('#core-skills');
+  if (coreEl) coreEl.innerHTML = core.length
+    ? `<span class="core-lab">core_stack =</span>${core.map(c => `<span class="core-chip">${esc(c)}</span>`).join('')}` : '';
   $('#skill-grid').innerHTML = asList(data.skills).map(g => `
     <div class="skill-card reveal">
       <h3>${esc(g.group)}</h3>
-      <div class="tags">${asList(g.items).map(i => `<span class="tag">${esc(i)}</span>`).join('')}</div>
+      <div class="tags">${asList(g.items).map(i =>
+        `<span class="tag${hot.has(String(i).toLowerCase()) ? ' hot' : ''}">${esc(i)}</span>`).join('')}</div>
     </div>`).join('');
+
+  FEED = asList(p.live_feed).filter(e => e && e.text);
 
   $('#socials').innerHTML = asList(data.socials).filter(s => safeUrl(s.url)).map(s =>
     `<a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join('');
+}
+
+/* ---------- hero: live event feed ---------- */
+let FEED = [];
+const DEFAULT_FEED = [
+  { tag: 'ws',   text: 'socket.connected · gateway' },
+  { tag: 'pay',  text: 'payment.captured' },
+  { tag: 'fcm',  text: 'push.delivered' },
+  { tag: 'sync', text: 'offline events synced' }
+];
+function initFeed(){
+  const list = $('#feed'); if (!list) return;
+  const events = FEED.length ? FEED : DEFAULT_FEED;
+  const count = $('#feed-count'), clock = $('#feed-clock');
+  const MAX = 6;
+  let i = 0, total = 0;
+  const pad = (n) => String(n).padStart(2, '0');
+  const tickClock = () => { const d = new Date(); clock.textContent = `${d.getHours()}:${pad(d.getMinutes())}`; };
+  tickClock(); setInterval(tickClock, 30000);
+
+  const make = (ev) => {
+    const li = document.createElement('li');
+    const tag = String(ev.tag || 'ws').toLowerCase().replace(/[^a-z]/g, '');
+    li.innerHTML = `<span class="ev-tag ev-${tag}">${esc(tag)}</span><span class="ev-time" data-t="${Date.now()}">now</span><span class="ev-text">${esc(ev.text)}</span>`;
+    return li;
+  };
+  const ages = () => list.querySelectorAll('.ev-time').forEach(t => {
+    const s = Math.round((Date.now() - +t.dataset.t) / 1000);
+    t.textContent = s < 2 ? 'now' : `${s}s ago`;
+  });
+  const push = (animate) => {
+    const li = make(events[i % events.length]); i++; total++;
+    if (animate) li.classList.add('enter', 'fresh');
+    list.prepend(li);
+    if (animate) { li.getBoundingClientRect(); li.classList.remove('enter'); setTimeout(() => li.classList.remove('fresh'), 1400); }
+    while (list.children.length > MAX) list.lastElementChild.remove();
+    count.textContent = `${total} events`;
+  };
+
+  // seed with a few past events so the screen starts full
+  const seed = Math.min(4, events.length);
+  for (let k = 0; k < seed; k++) push(false);
+  list.querySelectorAll('.ev-time').forEach((t, k) => t.dataset.t = Date.now() - (k + 1) * 3000);
+  ages();
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let visible = true;
+  new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(list);
+  setInterval(() => { if (visible && !document.hidden) { push(true); ages(); } else ages(); }, 2200);
 }
 
 /* ---------- signature: nav-graph rail ---------- */
@@ -265,6 +353,7 @@ function initMenu(){
   }
   $('#cms-tag').textContent = source;
   document.documentElement.classList.add('content-ready');
+  initFeed();
   initRail();
   initActive();
   initReveal();
