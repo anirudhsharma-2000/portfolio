@@ -384,3 +384,4 @@ footer{border-top:1px solid var(--line);padding:26px clamp(20px,5vw,48px);
 .proj.has-shots:not(.featured) .proj-body{flex:none}
 .proj.has-shots:not(.featured) .proj-body p{flex:none}
 .proj.has-shots:not(.featured) .shots{margin-top:auto}
+@media (min-width:961px) and (max-width:1280px){ .chip-b{right:-26%;top:47%} }
