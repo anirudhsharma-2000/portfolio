@@ -220,14 +220,49 @@ function render(data){
 /* ---------- work rows: screenshot switcher, image fallbacks ---------- */
 function wireWork(){
   const list = $('#work-list');
-  list.onclick = (e) => {
-    const b = e.target.closest('.dot-btn'); if (!b) return;
-    const media = b.closest('.work-media'), i = +b.dataset.i;
-    const imgs = media.querySelectorAll('.frame-screen img');
+  // show screen i in a media block (wraps around); preloads the next one
+  const show = (media, i) => {
+    const imgs = media.querySelectorAll('.frame-screen img'), n = imgs.length; if (!n) return;
+    i = ((i % n) + n) % n;
     imgs.forEach((img, k) => img.classList.toggle('on', k === i));
     media.querySelectorAll('.dot-btn').forEach((d, k) => { d.classList.toggle('on', k === i); d.toggleAttribute('aria-current', k === i); });
-    imgs[i]?.removeAttribute('loading');
+    imgs[i].removeAttribute('loading'); imgs[(i + 1) % n].removeAttribute('loading');
+    media.dataset.cur = i;
   };
+  const ROTATE_MS = 3400, AFTER_CLICK_MS = 9000;
+  list.onclick = (e) => {
+    const b = e.target.closest('.dot-btn'); if (!b) return;
+    const media = b.closest('.work-media');
+    show(media, +b.dataset.i);
+    media._next = Date.now() + AFTER_CLICK_MS;   // let the visitor look before moving on
+  };
+
+  // auto-advance screenshots while a project is on screen
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const medias = [...list.querySelectorAll('.work-media')];
+    const seen = new Set();
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { seen.add(e.target); e.target._next = Math.max(e.target._next || 0, Date.now() + 1800); }
+      else seen.delete(e.target);
+    }), { threshold: 0.35 });
+    medias.forEach((m, k) => {
+      m.dataset.cur = 0; m._next = Date.now() + ROTATE_MS + k * 600;   // stagger rows
+      const hold = (on) => () => { m._hold = on; if (!on) m._next = Math.max(m._next || 0, Date.now() + ROTATE_MS); };
+      m.addEventListener('mouseenter', hold(true)); m.addEventListener('mouseleave', hold(false));
+      m.addEventListener('focusin', hold(true));    m.addEventListener('focusout', hold(false));
+      io.observe(m);
+    });
+    setInterval(() => {
+      if (document.hidden) return;
+      const now = Date.now();
+      seen.forEach(m => {
+        if (!m.isConnected || m._hold || now < m._next) return;
+        if (m.querySelectorAll('.frame-screen img').length < 2) return;
+        show(m, +m.dataset.cur + 1);
+        m._next = now + ROTATE_MS;
+      });
+    }, 300);
+  }
 
   const dropShot = (img) => {
     const media = img.closest('.work-media'); if (!media) return;
@@ -244,7 +279,8 @@ function wireWork(){
     }
     media.querySelectorAll('.dot-btn').forEach((d, j) => d.dataset.i = j);
     if (left.length < 2) media.querySelector('.shot-dots')?.remove();
-    if (wasOn) { left[0].classList.add('on'); left[0].removeAttribute('loading'); media.querySelector('.dot-btn')?.classList.add('on'); }
+    if (wasOn) { left[0].classList.add('on'); left[0].removeAttribute('loading'); media.querySelector('.dot-btn')?.classList.add('on'); media.dataset.cur = 0; }
+    else media.dataset.cur = Math.max(0, left.findIndex(i => i.classList.contains('on')));
   };
   const iconFail = (img) => {
     const m = document.createElement('span');
