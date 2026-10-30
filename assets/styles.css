@@ -391,3 +391,45 @@ footer{border-top:1px solid var(--line);padding:26px clamp(20px,5vw,48px);
 .proj.featured .shot.wide{height:230px}
 .shots.landscape{align-items:center}
 @media (max-width:760px){ .shot.wide,.proj.featured .shot.wide{height:170px} }
+
+/* =====================================================
+   iOS Safari hardening
+===================================================== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{overflow-x:hidden}
+@supports (overflow-x:clip){ html,body{overflow-x:clip} }
+
+/* fixed device size (no aspect-ratio): the frame can never grow with the feed */
+.device{width:268px;max-width:100%}
+.device-frame{aspect-ratio:auto;height:548px;contain:layout paint;isolation:isolate}
+/* bottom fade as an overlay instead of mask-image (mask + animating children flickers in WebKit) */
+.feed{-webkit-mask-image:none;mask-image:none}
+.device-frame::after{content:"";position:absolute;left:0;right:0;bottom:22px;height:70px;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(20,17,27,0),#14111b 85%);z-index:1}
+.device-home{position:relative;z-index:2}
+/* no backdrop blur on chips inside an animated element */
+.chip{backdrop-filter:none;-webkit-backdrop-filter:none;background:#1A1622}
+
+@media (min-width:761px) and (max-width:960px){
+  .device{width:236px}
+  .device-frame{height:484px}
+}
+@media (max-width:760px){
+  .float{animation:none}              /* static phone on mobile: less repaint, no jank */
+  .device{width:224px}
+  .device-frame{height:384px;border-radius:36px}
+}
+@media (max-width:400px){
+  .device{width:212px}
+  .device-frame{height:366px}
+}
+.device-bar{white-space:nowrap;min-width:0}
+.device-bar .device-sub{overflow:hidden;text-overflow:ellipsis}
+@media (max-width:760px){
+  .chip{display:none}
+  .device-sub{display:none}
+  .device-bar{gap:8px}
+}
+@media (max-width:760px){
+  .ev-text{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+}
