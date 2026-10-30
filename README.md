@@ -66,5 +66,6 @@ assets/app.js      content loading, rendering, nav rail, animations
 config.js          content source
 content.json       all page content
 resume.pdf         resume, opens in the browser
+favicon.*          site icons (plus apple-touch-icon.png, icon-192.png)
 vercel.json        caching headers, skip builds for content-only commits
 ```

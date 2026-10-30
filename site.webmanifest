@@ -1,0 +1,8 @@
+{
+  "name": "Anirudh Sharma — Mobile Engineer",
+  "short_name": "anirudh.dev",
+  "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }],
+  "theme_color": "#121018",
+  "background_color": "#121018",
+  "display": "browser"
+}
