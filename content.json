@@ -7,7 +7,7 @@
     "eyebrow": "navgraph.xml · startDestination",
     "headline_pre": "Android apps that feel alive in ",
     "headline_highlight": "real time",
-    "bio": "I'm **Anirudh Sharma**. I build Kotlin and Jetpack Compose apps people use every day: consumer apps with 100K+ downloads and real-time Android TV for 10,000+ concurrent viewers, plus the backends, payments and AI features behind them.",
+    "bio": "I'm **Anirudh Sharma**, an Android engineer. I ship Kotlin and Jetpack Compose apps with 100K+ downloads, including a real-time Android TV client on a platform serving 10,000+ concurrent users, and build the backends, payments and AI features behind them.",
     "email": "anirudh16june@gmail.com",
     "resume_url": "/resume.pdf",
     "contact_blurb": "Open to senior Android and mobile roles, plus freelance builds: consumer apps, Android TV, React Native, or full-stack with a Node.js backend. Email is the fastest route; I reply within a day.",
@@ -21,8 +21,8 @@
         "label": "app downloads"
       },
       {
-        "value": "10K+",
-        "label": "live TV users"
+        "value": "~70%",
+        "label": "faster cold start"
       }
     ],
     "live_feed": [
@@ -52,7 +52,7 @@
       },
       {
         "tag": "tv",
-        "text": "socket.io · 10,214 viewers live"
+        "text": "socket.io · live score update"
       },
       {
         "tag": "ws",
@@ -178,7 +178,7 @@
     },
     {
       "title": "TLDR by LumioLabs",
-      "description": "Movies, shows, music and live sports from every platform in one place. I built the Android TV experience: live scores and match data streamed to 10K+ concurrent users, and launching content on the TV from a phone.",
+      "description": "Movies, shows, music and live sports across streaming platforms, in one place. I built the Android TV client: live scores and match data pushed over Socket.IO, and launching content on the TV from a phone.",
       "tags": [
         "Compose for TV",
         "Socket.IO",
@@ -203,7 +203,7 @@
         },
         {
           "value": "10K+",
-          "label": "concurrent users"
+          "label": "concurrent users on the platform"
         }
       ]
     },
@@ -269,14 +269,13 @@
       "company": "Origin Fresh",
       "role": "Senior Software Engineer",
       "period": "Jan 2026 — Present",
-      "summary": "Owner of the company's Android apps, consumer and in-store POS, Bengaluru.",
+      "summary": "Sole Android engineer for the company's consumer and in-store POS apps, Bengaluru.",
       "points": [
-        "Own the company's Android apps end to end: Wholesale Mandi (100K+ downloads, rated 4.1 from ~7K reviews), Origin Fresh (10K+, rated 4.4) and the in-store POS app, for customers across Bengaluru and Chennai",
-        "Cut app startup time from ~2 s to ~0.6 s (~70%) with Baseline Profiles, and fixed memory leaks caught with LeakCanary",
-        "Cut large-order checkout in the POS app from 6–10 minutes to under 5 with barcode scanning and a paginated catalog",
-        "Migrated the Origin Fresh app from XML to Jetpack Compose and defined its new architecture: MVVM with Dagger-Hilt, on Kotlin, Room, WorkManager and Google Maps SDK",
-        "Shrank the Origin Fresh app from 40 MB to 17 MB (~58%) with R8, resource shrinking, and removing unused native libraries and resources",
-        "Built an AI recipe generator on the Google Gemini API, Razorpay payments with webhook-driven confirmation, and Remote Config feature flags for A/B-tested rollouts"
+        "Sole Android engineer, owning three apps end to end: Wholesale Mandi (100K+ downloads, rated 4.1 from ~7K reviews), Origin Fresh (10K+, rated 4.4) and the in-store POS app",
+        "Cut cold start by ~70% (from ~2 s) and app size from 40 MB to 17 MB with Baseline Profiles, R8 and resource shrinking, and removing unused native libraries; fixed memory leaks found with LeakCanary",
+        "Cut POS checkout for large orders from 6–10 to under 5 minutes with barcode scanning and catalog pagination, so store staff scan items into the cart instead of searching",
+        "Migrated the Origin Fresh app from XML to Jetpack Compose and defined its architecture (MVVM, Dagger-Hilt), with Room, WorkManager and Google Maps SDK",
+        "Built an AI recipe generator with the Google Gemini API, Razorpay payments with webhook-driven confirmation, and Remote Config feature flags for A/B-tested rollouts"
       ]
     },
     {
@@ -285,11 +284,11 @@
       "period": "Sep 2024 — Dec 2025",
       "summary": "Real-time content discovery across phone and Android TV.",
       "points": [
-        "Built and shipped TLDR by LumioLabs (50K+ downloads), unifying movies, shows, music, and live sports with cross-platform search",
-        "Built the Android TV experience in Jetpack Compose: live sports scores and match data over Socket.IO to 10,000+ concurrent users, and an FCM flow to launch content on the TV from a phone",
+        "Built and shipped TLDR by LumioLabs (50K+ downloads), a content discovery app unifying movies, shows, music, and live sports across streaming platforms",
+        "Built the Android TV client in Jetpack Compose for live sports scores and match data, pushed in real time over Socket.IO by a backend serving 10,000+ concurrent users, plus an FCM flow to launch content on the TV from a phone",
         "Co-designed the app's server-driven UI architecture with the engineering manager and senior engineers; reviewed the team's Android pull requests and mentored junior engineers and interns",
         "GitHub Actions CI/CD for staging and production, cutting manual build and deploy time by 50%",
-        "Fixed a first-launch race where API calls fired before the app loaded its runtime base-URL config, by gating every request on that load with a Coroutines Mutex"
+        "Fixed a first-launch race where API calls fired before the microservices' base-URL config had loaded, by gating requests on it with a Coroutines Mutex"
       ]
     },
     {
@@ -298,10 +297,8 @@
       "period": "Aug 2023 — Aug 2024",
       "summary": "Android plus the backend behind it, remote.",
       "points": [
-        "Built and shipped a live cricket scores app on Google Play (50K+ downloads, rated 4.2 from 500+ reviews) with ball-by-ball commentary, scorecards, schedules and points tables",
-        "Designed Node.js + MongoDB backend services, consumed over REST with Retrofit and Coroutines, with Room for local storage and WorkManager for background work",
-        "Firebase Authentication for sign-in, FCM push notifications for re-engagement, and analytics event tracking",
-        "Defined UI regression test plans with Product, Design and QA, run before every production release"
+        "Built and shipped a live cricket scores app (50K+ downloads, rated 4.2) with ball-by-ball commentary, scorecards, schedules, and points tables",
+        "Built Node.js + MongoDB backend services and the Android client consuming them (Retrofit, Coroutines, Room, WorkManager), plus Firebase Auth sign-in, FCM push notifications and analytics tracking"
       ]
     },
     {
@@ -310,58 +307,43 @@
       "period": "Sep 2022 — Aug 2023",
       "summary": "Three Android apps built from one shared multi-module codebase.",
       "points": [
-        "Worked on anywhere.app (10K+ downloads, rated 4.3) for team chat, file sharing and video calls; AnswerConnect (10K+, rated 4.3) for a 24/7 virtual answering service; and WellReceived, HIPAA-compliant patient messaging",
-        "Migrated high-traffic flows from legacy Views to Jetpack Compose in the shared modules, so all three apps got the new UI from one change",
-        "Fixed FCM notification delivery and in-app dialer bugs across the apps",
-        "Profiled and refactored the shared modules, fixing memory leaks and improving cold-start time"
+        "Worked on three apps from one shared multi-module codebase: anywhere.app (10K+ downloads), team chat and calls; AnswerConnect (10K+ downloads), a virtual answering service; and WellReceived, HIPAA-compliant patient messaging",
+        "Migrated high-traffic flows from Views to Jetpack Compose in the shared modules, shipping the new UI to all three apps in one change",
+        "Fixed FCM notification and in-app dialer bugs, and memory leaks affecting cold start"
       ]
     }
   ],
   "skills": [
     {
-      "group": "languages",
+      "group": "android",
       "items": [
         "Kotlin",
-        "Java",
-        "TypeScript",
-        "JavaScript"
-      ]
-    },
-    {
-      "group": "android core",
-      "items": [
-        "Android SDK",
         "Jetpack Compose",
         "Compose for TV",
         "Kotlin Multiplatform",
         "Compose Multiplatform",
+        "Coroutines/Flow",
+        "Dagger-Hilt",
         "Room",
-        "Retrofit",
         "WorkManager",
+        "Retrofit",
+        "Firebase",
         "Google Maps SDK"
       ]
     },
     {
-      "group": "architecture",
+      "group": "architecture & integrations",
       "items": [
         "MVVM",
         "Clean Architecture",
         "Multi-module",
         "Server-driven UI",
-        "Dagger-Hilt",
-        "Coroutines/Flow"
-      ]
-    },
-    {
-      "group": "realtime & integrations",
-      "items": [
         "WebSockets",
         "Socket.IO",
-        "FCM",
-        "Remote Config",
+        "REST APIs",
         "Razorpay",
         "Webhooks",
-        "LLM integration (Gemini API)",
+        "Gemini API",
         "MCP"
       ]
     },
@@ -374,18 +356,20 @@
         "Node.js",
         "Express",
         "MongoDB",
-        "PostgreSQL"
+        "PostgreSQL",
+        "Java",
+        "JavaScript",
+        "TypeScript"
       ]
     },
     {
-      "group": "quality & delivery",
+      "group": "performance & tooling",
       "items": [
-        "JUnit",
-        "Android Profiler",
-        "LeakCanary",
         "Baseline Profiles",
+        "LeakCanary",
         "Crashlytics",
         "Firebase Performance",
+        "JUnit",
         "GitHub Actions",
         "Gradle",
         "A/B Testing"
