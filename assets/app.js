@@ -125,6 +125,12 @@ function render(data){
     if (id !== 'contact') setText(`#${id} .section-sub`, s.sub);
   }
 
+  const STAR = `<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.82 5.98 6.52.8-4.8 4.48 1.24 6.46L12 17.1l-5.78 3.22 1.24-6.46-4.8-4.48 6.52-.8z"/></svg>`;
+  const statHTML = (s) => {
+    let v = String(s.value ?? ''), rating = !!s.rating;
+    if (/★\s*$/.test(v)) { v = v.replace(/\s*★\s*$/, ''); rating = true; }
+    return `<div class="proj-stat${rating ? ' rating' : ''}"><div class="num">${esc(v)}${rating ? STAR : ''}</div><div class="lab">${esc(s.label)}</div></div>`;
+  };
   const initials = (t) => String(t || '?').split(/[\s-]+/).filter(w => /^[A-Za-z0-9]/.test(w) && !/^(by|of|the|and|for|a)$/i.test(w))
     .slice(0, 2).map(w => w[0]).join('').toUpperCase();
 
@@ -146,7 +152,7 @@ function render(data){
         </div>
         <p>${esc(pr.description)}</p>
         ${pstats.length ? `<div class="proj-stats">${pstats.map(s =>
-          `<div class="proj-stat"><div class="num">${esc(s.value)}</div><div class="lab">${esc(s.label)}</div></div>`).join('')}</div>` : ''}
+          statHTML(s)).join('')}</div>` : ''}
         <div class="tags">${asList(pr.tags).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
         ${play || gh || web ? `<div class="proj-links">
           ${play ? `<a href="${esc(play)}" target="_blank" rel="noopener">Play Store ${arrow}</a>` : ''}

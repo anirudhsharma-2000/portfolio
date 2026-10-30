@@ -110,8 +110,9 @@
           "label": "downloads"
         },
         {
-          "value": "4.1★",
-          "label": "from ~7K reviews"
+          "value": "4.1",
+          "label": "from ~7K reviews",
+          "rating": true
         },
         {
           "value": "2",
@@ -145,8 +146,9 @@
           "label": "downloads"
         },
         {
-          "value": "4.4★",
-          "label": "Play rating"
+          "value": "4.4",
+          "label": "Play rating",
+          "rating": true
         }
       ]
     },
@@ -182,6 +184,35 @@
       ]
     },
     {
+      "title": "EHO-Partner",
+      "description": "Emergency dispatch with live Maps tracking, WebSocket broadcasts, Razorpay, and offline-first sync that survives network dropouts.",
+      "tags": [
+        "Kotlin",
+        "WebSockets",
+        "Google Maps SDK",
+        "Room",
+        "WorkManager",
+        "Razorpay"
+      ],
+      "play_url": "https://play.google.com/store/apps/details?id=com.driver.EHO",
+      "github_url": "",
+      "badge": "Freelance",
+      "icon": "https://play-lh.googleusercontent.com/42-emN2iGNvMRDKr_IMLlDK8_VHdCz3TJw2xZDY6Ouc0ybGVelAgOUtbE2A5kZsWtvjQB0YOBwoHCAye61rv9g=w160-h160",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/EFrm1-hmyd7WBWcqPGyJGDIsLnhBlrbDf3ieGulLsiAaJB0lm-4akcbiYK0vTLIOygfBgLJeLjSI4MkWSInlFg=w1052-h640",
+        "https://play-lh.googleusercontent.com/PkJ7bWCD7WCjARh7zHN_dc2GNG3Fx4pPye39ScwNETHgP2qmFXCBQgKb1pu6adf4PWGlCZmG1Zb9BsH-nHh-fw=w1052-h640",
+        "https://play-lh.googleusercontent.com/M2jszp95LuwNShxl0KXw1CMts1WNRwTkbJiDK-Tv-va-e2xIhGR05nzqtygzOxSqjhNHRNhd-Cq5PloHPjSp=w1052-h640",
+        "https://play-lh.googleusercontent.com/QILzKhn4zJ44UuwTSbfWpecxQLLn_FK2CkFdL120XnPnoEX0i949i4cX7fyihaV91u78GZ-dPM4S3I5MVULKWCY=w1052-h640"
+      ],
+      "stats": [
+        {
+          "value": "4.8",
+          "label": "from 31 reviews",
+          "rating": true
+        }
+      ]
+    },
+    {
       "title": "Dossier",
       "description": "Self-hosted AI job-search app. I shipped its Claude connector and Startups discovery across YC and Hacker News hiring posts.",
       "tags": [
@@ -207,34 +238,6 @@
       ],
       "url": "https://dossier-lemon-pi.vercel.app/",
       "url_label": "Live app"
-    },
-    {
-      "title": "EHO-Partner",
-      "description": "Emergency dispatch with live Maps tracking, WebSocket broadcasts, Razorpay, and offline-first sync that survives network dropouts.",
-      "tags": [
-        "Kotlin",
-        "WebSockets",
-        "Google Maps SDK",
-        "Room",
-        "WorkManager",
-        "Razorpay"
-      ],
-      "play_url": "https://play.google.com/store/apps/details?id=com.driver.EHO",
-      "github_url": "",
-      "badge": "Freelance",
-      "icon": "https://play-lh.googleusercontent.com/42-emN2iGNvMRDKr_IMLlDK8_VHdCz3TJw2xZDY6Ouc0ybGVelAgOUtbE2A5kZsWtvjQB0YOBwoHCAye61rv9g=w160-h160",
-      "screenshots": [
-        "https://play-lh.googleusercontent.com/EFrm1-hmyd7WBWcqPGyJGDIsLnhBlrbDf3ieGulLsiAaJB0lm-4akcbiYK0vTLIOygfBgLJeLjSI4MkWSInlFg=w1052-h640",
-        "https://play-lh.googleusercontent.com/PkJ7bWCD7WCjARh7zHN_dc2GNG3Fx4pPye39ScwNETHgP2qmFXCBQgKb1pu6adf4PWGlCZmG1Zb9BsH-nHh-fw=w1052-h640",
-        "https://play-lh.googleusercontent.com/M2jszp95LuwNShxl0KXw1CMts1WNRwTkbJiDK-Tv-va-e2xIhGR05nzqtygzOxSqjhNHRNhd-Cq5PloHPjSp=w1052-h640",
-        "https://play-lh.googleusercontent.com/QILzKhn4zJ44UuwTSbfWpecxQLLn_FK2CkFdL120XnPnoEX0i949i4cX7fyihaV91u78GZ-dPM4S3I5MVULKWCY=w1052-h640"
-      ],
-      "stats": [
-        {
-          "value": "4.8★",
-          "label": "from 31 reviews"
-        }
-      ]
     }
   ],
   "experiences": [
@@ -244,7 +247,7 @@
       "period": "Jan 2026 — Present",
       "summary": "Consumer and POS Android apps for a fresh-produce business — Bengaluru.",
       "points": [
-        "Ship Wholesale Mandi (100K+ downloads, 4.1★) and Origin Fresh (10K+, 4.4★) on Google Play across Bengaluru and Chennai",
+        "Ship Wholesale Mandi (100K+ downloads, rated 4.1) and Origin Fresh (10K+, rated 4.4) on Google Play across Bengaluru and Chennai",
         "Led the modular XML → Jetpack Compose migration, speeding up feature delivery by 35%",
         "Built an AI recipe generator on Google Gemini inside the Origin Fresh app",
         "Own mobile architecture across consumer and POS apps with MVVM and strict Dagger-Hilt DI",
