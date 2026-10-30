@@ -82,7 +82,7 @@
     {
       "title": "Wholesale Mandi",
       "featured": true,
-      "description": "Fresh-produce ordering for customers across Bengaluru and Chennai, built in Kotlin and Jetpack Compose with Room, WorkManager and Google Maps. Remote Config flags let us A/B test rollouts without waiting on app-store updates.",
+      "description": "Fresh-produce ordering for customers across Bengaluru and Chennai. I own the app end to end: Kotlin and Jetpack Compose with Room, WorkManager and Google Maps, plus Remote Config flags for A/B-tested rollouts without app-store waits.",
       "tags": [
         "Kotlin",
         "Jetpack Compose",
@@ -119,13 +119,14 @@
     },
     {
       "title": "Origin Fresh",
-      "description": "Fresh fruits and veggies, with an AI recipe generator on Google Gemini and Razorpay payments confirmed by webhook. I cut the app from 40 MB to 17 MB.",
+      "description": "Fresh fruits and veggies, with an AI recipe generator on Google Gemini and Razorpay payments confirmed by webhook. I migrated it from XML to Jetpack Compose on a new MVVM + Hilt architecture, and shrank it from 40 MB to 17 MB.",
       "tags": [
         "Kotlin",
         "Jetpack Compose",
+        "Dagger-Hilt",
         "Gemini API",
         "Razorpay",
-        "Webhooks"
+        "R8"
       ],
       "play_url": "https://play.google.com/store/apps/details?id=com.originfresh.user",
       "github_url": "",
@@ -177,12 +178,12 @@
     },
     {
       "title": "TLDR by LumioLabs",
-      "description": "Movies, shows, music and live sports from every platform in one place. I built the real-time Android TV experience and the phone-to-TV launch flow.",
+      "description": "Movies, shows, music and live sports from every platform in one place. I built the Android TV experience: live scores and match data streamed to 10K+ concurrent users, and launching content on the TV from a phone.",
       "tags": [
         "Compose for TV",
         "Socket.IO",
+        "Server-driven UI",
         "FCM",
-        "Coroutines/Flow",
         "GitHub Actions"
       ],
       "play_url": "https://play.google.com/store/apps/details?id=ai.lumiolabs.tldr",
@@ -268,14 +269,14 @@
       "company": "Origin Fresh",
       "role": "Senior Software Engineer",
       "period": "Jan 2026 — Present",
-      "summary": "Consumer apps and the in-store POS app for a fresh-produce business, Bengaluru.",
+      "summary": "Owner of the company's Android apps, consumer and in-store POS, Bengaluru.",
       "points": [
-        "Ship Wholesale Mandi (100K+ downloads, rated 4.1 from ~7K reviews) and Origin Fresh (10K+, rated 4.4) on Google Play for customers across Bengaluru and Chennai",
-        "Improved app startup time by ~70% with Baseline Profiles and LeakCanary-found leak fixes, and cut the Origin Fresh app from 40 MB to 17 MB",
-        "Cut large-order checkout in the in-store POS app from 6–10 minutes to under 5 with barcode scanning and a paginated catalog",
-        "Built an AI recipe generator in the Origin Fresh app with the Google Gemini API",
-        "Razorpay payments with webhook-driven confirmation, keeping order and payment status reliable end to end",
-        "Feature flags and dynamic routing on Firebase Remote Config to A/B test rollouts without waiting on app-store updates"
+        "Own the company's Android apps end to end: Wholesale Mandi (100K+ downloads, rated 4.1 from ~7K reviews), Origin Fresh (10K+, rated 4.4) and the in-store POS app, for customers across Bengaluru and Chennai",
+        "Cut app startup time from ~2 s to ~0.6 s (~70%) with Baseline Profiles, and fixed memory leaks caught with LeakCanary",
+        "Cut large-order checkout in the POS app from 6–10 minutes to under 5 with barcode scanning and a paginated catalog",
+        "Migrated the Origin Fresh app from XML to Jetpack Compose and defined its new architecture: MVVM with Dagger-Hilt, on Kotlin, Room, WorkManager and Google Maps SDK",
+        "Shrank the Origin Fresh app from 40 MB to 17 MB (~58%) with R8, resource shrinking, and removing unused native libraries and resources",
+        "Built an AI recipe generator on the Google Gemini API, Razorpay payments with webhook-driven confirmation, and Remote Config feature flags for A/B-tested rollouts"
       ]
     },
     {
@@ -285,10 +286,10 @@
       "summary": "Real-time content discovery across phone and Android TV.",
       "points": [
         "Built and shipped TLDR by LumioLabs (50K+ downloads), unifying movies, shows, music, and live sports with cross-platform search",
-        "Real-time Android TV features in Jetpack Compose over bidirectional Socket.IO for 10,000+ concurrent users",
-        "Phone-to-TV launch flow over FCM, so users start content on the TV straight from their phone",
+        "Built the Android TV experience in Jetpack Compose: live sports scores and match data over Socket.IO to 10,000+ concurrent users, and an FCM flow to launch content on the TV from a phone",
+        "Co-designed the app's server-driven UI architecture with the engineering manager and senior engineers; reviewed the team's Android pull requests and mentored junior engineers and interns",
         "GitHub Actions CI/CD for staging and production, cutting manual build and deploy time by 50%",
-        "Fixed a first-launch race condition in concurrent microservice calls with a Coroutines Mutex, so service setup runs exactly once"
+        "Fixed a first-launch race where API calls fired before the app loaded its runtime base-URL config, by gating every request on that load with a Coroutines Mutex"
       ]
     },
     {
@@ -346,9 +347,9 @@
         "MVVM",
         "Clean Architecture",
         "Multi-module",
+        "Server-driven UI",
         "Dagger-Hilt",
-        "Coroutines/Flow",
-        "LiveData"
+        "Coroutines/Flow"
       ]
     },
     {
