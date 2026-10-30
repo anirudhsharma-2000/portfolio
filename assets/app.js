@@ -143,7 +143,7 @@ function render(data){
   $('#xp-list').innerHTML = asList(data.experiences).map(x => `
     <div class="xp-item reveal">
       <div class="xp-when">${esc(x.period)}</div>
-      <h3>${esc(x.role)} <span>· ${esc(x.company)}</span></h3>
+      <h3>${esc(x.role)} <span class="at">${esc(x.company)}</span></h3>
       ${x.summary ? `<p>${esc(x.summary)}</p>` : ''}
       <ul class="xp-points">${asList(x.points).map(pt => `<li>${esc(pt)}</li>`).join('')}</ul>
     </div>`).join('');
