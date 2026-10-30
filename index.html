@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anirudh Sharma — Mobile Engineer</title>
+<meta name="description" content="Mobile engineer in Bengaluru building Kotlin-first, Compose-native Android apps with real-time features, offline-first sync, and CI/CD baked in." />
+<meta property="og:title" content="Anirudh Sharma — Mobile Engineer">
+<meta property="og:description" content="Kotlin-first, Compose-native Android apps with real-time features, offline-first sync, and CI/CD baked in.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+
+</head>
+<body>
+
+<div class="backdrop"></div>
+<div class="progress" id="progress"></div>
+
+<!-- shared gradients -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="kgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8E6BFF"/><stop offset="52%" stop-color="#C86BFF"/><stop offset="100%" stop-color="#FF8A5C"/>
+    </linearGradient>
+    <linearGradient id="railGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8E6BFF"/><stop offset="55%" stop-color="#C86BFF"/><stop offset="100%" stop-color="#FF8A5C"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="topnav">
+  <a class="brand" href="#home"><span class="dot"></span><span><b id="brand-name">anirudh</b>.dev</span></a>
+  <div class="navlinks" id="navlinks">
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu">menu()</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
+  <button class="close" id="menuClose" aria-label="Close menu">close()</button>
+  <a href="#home">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- signature: navigation-graph rail -->
+<aside class="rail" aria-hidden="true">
+  <svg id="railSvg" width="80" height="620" viewBox="0 0 80 620">
+    <path class="track" id="railTrack" d=""/>
+    <path class="ink" id="railInk" d=""/>
+    <g id="railNodes"></g>
+  </svg>
+</aside>
+<div class="rail-label" id="railLabel"></div>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div>
+    <p class="eyebrow" id="hero-eyebrow">navgraph.xml · startDestination</p>
+    <h1 id="hero-headline">Android apps that feel alive in <span class="squig">real time<svg viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path class="draw d3" pathLength="1" d="M3 16 C 30 6, 55 22, 85 13 S 150 5, 197 14"/></svg></span>.</h1>
+    <p class="hero-bio" id="hero-bio">I'm <strong>Anirudh Sharma</strong>, a mobile engineer in Bengaluru with 4+ years across consumer, POS, and Android TV apps, now Senior Software Engineer at Origin Fresh. Kotlin-first, Compose-native — happiest wiring up WebSockets, offline-first sync, and CI/CD pipelines that ship themselves.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">See my work
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="/resume.pdf" id="resume-btn" download="Anirudh_Sharma_Resume.pdf">resume.pdf ↓</a>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <!-- hero art: phone + nav graph, all drawn paths -->
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 360 480" fill="none" class="float">
+      <!-- phone outline -->
+      <rect class="draw" pathLength="1" x="84" y="30" width="192" height="400" rx="34" stroke="url(#kgrad)" stroke-width="3"/>
+      <line class="draw d2" pathLength="1" x1="150" y1="52" x2="210" y2="52" stroke="rgba(183,167,244,.5)" stroke-width="4" stroke-linecap="round"/>
+      <!-- screens inside -->
+      <rect class="draw d2" pathLength="1" x="112" y="84" width="64" height="92" rx="12" stroke="#9D7BFF" stroke-width="2"/>
+      <rect class="draw d3" pathLength="1" x="196" y="150" width="56" height="80" rx="12" stroke="#C86BFF" stroke-width="2"/>
+      <rect class="draw d4" pathLength="1" x="120" y="268" width="60" height="86" rx="12" stroke="#FF8A5C" stroke-width="2"/>
+      <!-- nav edges between screens -->
+      <path class="draw d3" pathLength="1" d="M176 132 C 200 132, 196 168, 196 184" stroke="rgba(201,182,255,.65)" stroke-width="2" stroke-dasharray="0" stroke-linecap="round"/>
+      <path class="draw d4" pathLength="1" d="M222 230 C 222 262, 198 286, 182 296" stroke="rgba(201,182,255,.65)" stroke-width="2" stroke-linecap="round"/>
+      <path class="draw d5" pathLength="1" d="M150 268 C 150 232, 140 200, 144 178" stroke="rgba(255,138,92,.5)" stroke-width="2" stroke-linecap="round"/>
+      <!-- arrowheads -->
+      <path class="fade-in f2" d="M192 178 l4 8 8-3" stroke="rgba(201,182,255,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="fade-in f3" d="M188 290 l-7 6 5 7" stroke="rgba(201,182,255,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- screen content hints -->
+      <g class="fade-in f2" stroke="rgba(183,167,244,.4)" stroke-width="3" stroke-linecap="round">
+        <line x1="122" y1="104" x2="160" y2="104"/><line x1="122" y1="118" x2="166" y2="118"/><line x1="122" y1="132" x2="150" y2="132"/>
+      </g>
+      <g class="fade-in f3" stroke="rgba(200,107,255,.4)" stroke-width="3" stroke-linecap="round">
+        <line x1="206" y1="168" x2="242" y2="168"/><line x1="206" y1="182" x2="236" y2="182"/>
+      </g>
+      <g class="fade-in f4" stroke="rgba(255,138,92,.45)" stroke-width="3" stroke-linecap="round">
+        <line x1="130" y1="290" x2="170" y2="290"/><line x1="130" y1="304" x2="162" y2="304"/><line x1="130" y1="318" x2="154" y2="318"/>
+      </g>
+      <!-- floating code chips -->
+      <g class="fade-in f3">
+        <rect x="14" y="120" width="120" height="34" rx="10" fill="#1A1622" stroke="rgba(183,167,244,.25)"/>
+        <text x="28" y="142" font-family="JetBrains Mono" font-size="12" fill="#C9B6FF">@Composable</text>
+      </g>
+      <g class="fade-in f4">
+        <rect x="232" y="328" width="116" height="34" rx="10" fill="#1A1622" stroke="rgba(255,138,92,.3)"/>
+        <text x="246" y="350" font-family="JetBrains Mono" font-size="12" fill="#FF9D6B">navigate(...)</text>
+      </g>
+      <g class="fade-in f2">
+        <rect x="244" y="64" width="100" height="34" rx="10" fill="#1A1622" stroke="rgba(157,123,255,.3)"/>
+        <text x="258" y="86" font-family="JetBrains Mono" font-size="12" fill="#9D7BFF">fun main()</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <p class="eyebrow reveal">ProjectsScreen()</p>
+  <h2 class="reveal">Shipped &amp; in the wild</h2>
+  <p class="section-sub reveal">Production apps on Google Play — from fresh-produce marketplaces to TV discovery to open source.</p>
+  <div class="proj-grid" id="proj-grid"></div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience">
+  <p class="eyebrow reveal">ExperienceScreen()</p>
+  <h2 class="reveal">Where I've built</h2>
+  <p class="section-sub reveal">Four-plus years across product startups, agency work, and freelance builds.</p>
+  <div class="xp" id="xp-list"></div>
+  <div class="edu" id="edu-list"></div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <p class="eyebrow reveal">SkillsScreen()</p>
+  <h2 class="reveal">The toolkit</h2>
+  <p class="section-sub reveal">Deep on the modern Android stack, with full-stack range when a backend is needed.</p>
+  <div class="skill-grid" id="skill-grid"></div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact">
+  <p class="eyebrow reveal" style="justify-content:center">ContactScreen()</p>
+  <h2 class="reveal">Let's ship something.</h2>
+  <p class="section-sub reveal" id="contact-sub">Open to senior Android and mobile roles, plus freelance builds — consumer apps, Android TV, React Native, or full-stack with a Node.js backend. Email is the fastest route; I reply within a day.</p>
+  <a class="btn btn-primary reveal" id="email-btn" href="mailto:anirudh16june@gmail.com">anirudh16june@gmail.com</a>
+  <div class="socials reveal" id="socials"></div>
+</section>
+
+</main>
+
+<footer>
+  <span id="footer-left">© 2026 Anirudh Sharma</span>
+  <span>built with Kotlin energy · content via <span id="cms-tag">bundled data</span></span>
+</footer>
+<script src="/config.js"></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>
